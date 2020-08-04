@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F72714324D7A9460064587A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72714224D7A9460064587A /* AppDelegate.swift */; };
+		7F72714524D7A9460064587A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72714424D7A9460064587A /* SceneDelegate.swift */; };
+		7F72714724D7A9460064587A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72714624D7A9460064587A /* ViewController.swift */; };
+		7F72714A24D7A9460064587A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F72714824D7A9460064587A /* Main.storyboard */; };
+		7F72714C24D7A9490064587A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F72714B24D7A9490064587A /* Assets.xcassets */; };
+		7F72714F24D7A9490064587A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F72714D24D7A9490064587A /* LaunchScreen.storyboard */; };
+		7F72715724D7A99C0064587A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715624D7A99B0064587A /* VideoViewController.swift */; };
+		7F72717824D7A9B00064587A /* String+Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715A24D7A9B00064587A /* String+Encryption.swift */; };
+		7F72717924D7A9B00064587A /* HYDefaultVideoCacheLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715C24D7A9B00064587A /* HYDefaultVideoCacheLocation.swift */; };
+		7F72717A24D7A9B00064587A /* HYMediaCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715D24D7A9B00064587A /* HYMediaCacheManager.swift */; };
+		7F72717B24D7A9B00064587A /* HYMediaCryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715E24D7A9B00064587A /* HYMediaCryptor.swift */; };
+		7F72717C24D7A9B00064587A /* HYMediaCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715F24D7A9B00064587A /* HYMediaCacher.swift */; };
+		7F72717D24D7A9B00064587A /* HYMediaCacheDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716124D7A9B00064587A /* HYMediaCacheDelegate.swift */; };
+		7F72717E24D7A9B00064587A /* HYMediaCacherDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716224D7A9B00064587A /* HYMediaCacherDelegate.swift */; };
+		7F72717F24D7A9B00064587A /* HYMediaCacheLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716324D7A9B00064587A /* HYMediaCacheLocation.swift */; };
+		7F72718024D7A9B00064587A /* HYPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F72716524D7A9B00064587A /* HYPlayer.bundle */; };
+		7F72718124D7A9B00064587A /* HYAudiovisualCommonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716724D7A9B00064587A /* HYAudiovisualCommonConfig.swift */; };
+		7F72718224D7A9B00064587A /* HYAudiovisualCommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716824D7A9B00064587A /* HYAudiovisualCommonModel.swift */; };
+		7F72718324D7A9B00064587A /* HYCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716A24D7A9B00064587A /* HYCacheStorage.swift */; };
+		7F72718424D7A9B00064587A /* HYFileDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716B24D7A9B00064587A /* HYFileDirectory.swift */; };
+		7F72718524D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716D24D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift */; };
+		7F72718624D7A9B00064587A /* HYAudiovisualCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716F24D7A9B00064587A /* HYAudiovisualCommonView.swift */; };
+		7F72718724D7A9B00064587A /* HYAudiovisualCommonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717024D7A9B00064587A /* HYAudiovisualCommonManager.swift */; };
+		7F72718824D7A9B00064587A /* HYSpeedyRemindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717224D7A9B00064587A /* HYSpeedyRemindView.swift */; };
+		7F72718924D7A9B00064587A /* HYEndPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717324D7A9B00064587A /* HYEndPlayView.swift */; };
+		7F72718A24D7A9B00064587A /* HYControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717424D7A9B00064587A /* HYControlPanelView.swift */; };
+		7F72718B24D7A9B00064587A /* HYFullScreenMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717524D7A9B00064587A /* HYFullScreenMaskView.swift */; };
+		7F72718C24D7A9B00064587A /* HYAudioPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717624D7A9B00064587A /* HYAudioPlayView.swift */; };
+		7F72718D24D7A9B00064587A /* HYAudiovisualSpeedyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717724D7A9B00064587A /* HYAudiovisualSpeedyManager.swift */; };
+		7F72719124D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72719024D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift */; };
+		7FAAC14124D8F6B000FB7202 /* HYResponseExpandButtton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAC14024D8F6B000FB7202 /* HYResponseExpandButtton.swift */; };
+		CDD4286B67AF8D8C1FE376CD /* Pods_HYPlayerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312CD825D97236A5AE22FB3C /* Pods_HYPlayerDemo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0E52EF8F02AC7DE2298DEF60 /* Pods-HYPlayerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYPlayerDemo.release.xcconfig"; path = "Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo.release.xcconfig"; sourceTree = "<group>"; };
+		2EF199AEF2B1431C396C59B9 /* Pods-HYPlayerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYPlayerDemo.debug.xcconfig"; path = "Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		312CD825D97236A5AE22FB3C /* Pods_HYPlayerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYPlayerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F72713F24D7A9460064587A /* HYPlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HYPlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F72714224D7A9460064587A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7F72714424D7A9460064587A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7F72714624D7A9460064587A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7F72714924D7A9460064587A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7F72714B24D7A9490064587A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7F72714E24D7A9490064587A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7F72715024D7A9490064587A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F72715624D7A99B0064587A /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		7F72715A24D7A9B00064587A /* String+Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encryption.swift"; sourceTree = "<group>"; };
+		7F72715C24D7A9B00064587A /* HYDefaultVideoCacheLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYDefaultVideoCacheLocation.swift; sourceTree = "<group>"; };
+		7F72715D24D7A9B00064587A /* HYMediaCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCacheManager.swift; sourceTree = "<group>"; };
+		7F72715E24D7A9B00064587A /* HYMediaCryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCryptor.swift; sourceTree = "<group>"; };
+		7F72715F24D7A9B00064587A /* HYMediaCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCacher.swift; sourceTree = "<group>"; };
+		7F72716124D7A9B00064587A /* HYMediaCacheDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCacheDelegate.swift; sourceTree = "<group>"; };
+		7F72716224D7A9B00064587A /* HYMediaCacherDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCacherDelegate.swift; sourceTree = "<group>"; };
+		7F72716324D7A9B00064587A /* HYMediaCacheLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCacheLocation.swift; sourceTree = "<group>"; };
+		7F72716524D7A9B00064587A /* HYPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HYPlayer.bundle; sourceTree = "<group>"; };
+		7F72716724D7A9B00064587A /* HYAudiovisualCommonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonConfig.swift; sourceTree = "<group>"; };
+		7F72716824D7A9B00064587A /* HYAudiovisualCommonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonModel.swift; sourceTree = "<group>"; };
+		7F72716A24D7A9B00064587A /* HYCacheStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYCacheStorage.swift; sourceTree = "<group>"; };
+		7F72716B24D7A9B00064587A /* HYFileDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYFileDirectory.swift; sourceTree = "<group>"; };
+		7F72716D24D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonViewDelegate.swift; sourceTree = "<group>"; };
+		7F72716F24D7A9B00064587A /* HYAudiovisualCommonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonView.swift; sourceTree = "<group>"; };
+		7F72717024D7A9B00064587A /* HYAudiovisualCommonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonManager.swift; sourceTree = "<group>"; };
+		7F72717224D7A9B00064587A /* HYSpeedyRemindView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYSpeedyRemindView.swift; sourceTree = "<group>"; };
+		7F72717324D7A9B00064587A /* HYEndPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYEndPlayView.swift; sourceTree = "<group>"; };
+		7F72717424D7A9B00064587A /* HYControlPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYControlPanelView.swift; sourceTree = "<group>"; };
+		7F72717524D7A9B00064587A /* HYFullScreenMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYFullScreenMaskView.swift; sourceTree = "<group>"; };
+		7F72717624D7A9B00064587A /* HYAudioPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudioPlayView.swift; sourceTree = "<group>"; };
+		7F72717724D7A9B00064587A /* HYAudiovisualSpeedyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualSpeedyManager.swift; sourceTree = "<group>"; };
+		7F72718E24D7AABC0064587A /* HYPlayerDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HYPlayerDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		7F72719024D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYMoreFunctionSpeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		7FAAC14024D8F6B000FB7202 /* HYResponseExpandButtton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYResponseExpandButtton.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F72713C24D7A9460064587A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDD4286B67AF8D8C1FE376CD /* Pods_HYPlayerDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F72713624D7A9460064587A = {
+			isa = PBXGroup;
+			children = (
+				7F72714124D7A9460064587A /* HYPlayerDemo */,
+				7F72714024D7A9460064587A /* Products */,
+				C9D2D95A9EC5472D02717F2A /* Pods */,
+				B717FC0DA78098B499F3D1A1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7F72714024D7A9460064587A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F72713F24D7A9460064587A /* HYPlayerDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F72714124D7A9460064587A /* HYPlayerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				7F72715824D7A9B00064587A /* HYPlayer */,
+				7F72714224D7A9460064587A /* AppDelegate.swift */,
+				7F72714424D7A9460064587A /* SceneDelegate.swift */,
+				7F72714624D7A9460064587A /* ViewController.swift */,
+				7F72715624D7A99B0064587A /* VideoViewController.swift */,
+				7F72714824D7A9460064587A /* Main.storyboard */,
+				7F72714B24D7A9490064587A /* Assets.xcassets */,
+				7F72714D24D7A9490064587A /* LaunchScreen.storyboard */,
+				7F72715024D7A9490064587A /* Info.plist */,
+				7F72718E24D7AABC0064587A /* HYPlayerDemo-Bridging-Header.h */,
+			);
+			path = HYPlayerDemo;
+			sourceTree = "<group>";
+		};
+		7F72715824D7A9B00064587A /* HYPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				7F72715924D7A9B00064587A /* Extension */,
+				7F72715B24D7A9B00064587A /* Cache */,
+				7F72716424D7A9B00064587A /* Resources */,
+				7F72716924D7A9B00064587A /* FileManager */,
+				7F72716C24D7A9B00064587A /* Protocols */,
+				7F72716624D7A9B00064587A /* Models */,
+				7F72716E24D7A9B00064587A /* Player */,
+			);
+			path = HYPlayer;
+			sourceTree = "<group>";
+		};
+		7F72715924D7A9B00064587A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7F72715A24D7A9B00064587A /* String+Encryption.swift */,
+				7FAAC14024D8F6B000FB7202 /* HYResponseExpandButtton.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		7F72715B24D7A9B00064587A /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				7F72715C24D7A9B00064587A /* HYDefaultVideoCacheLocation.swift */,
+				7F72715D24D7A9B00064587A /* HYMediaCacheManager.swift */,
+				7F72715E24D7A9B00064587A /* HYMediaCryptor.swift */,
+				7F72715F24D7A9B00064587A /* HYMediaCacher.swift */,
+				7F72716024D7A9B00064587A /* Protocols */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		7F72716024D7A9B00064587A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7F72716124D7A9B00064587A /* HYMediaCacheDelegate.swift */,
+				7F72716224D7A9B00064587A /* HYMediaCacherDelegate.swift */,
+				7F72716324D7A9B00064587A /* HYMediaCacheLocation.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7F72716424D7A9B00064587A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7F72716524D7A9B00064587A /* HYPlayer.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7F72716624D7A9B00064587A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F72716724D7A9B00064587A /* HYAudiovisualCommonConfig.swift */,
+				7F72716824D7A9B00064587A /* HYAudiovisualCommonModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7F72716924D7A9B00064587A /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				7F72716A24D7A9B00064587A /* HYCacheStorage.swift */,
+				7F72716B24D7A9B00064587A /* HYFileDirectory.swift */,
+			);
+			path = FileManager;
+			sourceTree = "<group>";
+		};
+		7F72716C24D7A9B00064587A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7F72716D24D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7F72716E24D7A9B00064587A /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				7F72717124D7A9B00064587A /* ChildControlViews */,
+				7F72716F24D7A9B00064587A /* HYAudiovisualCommonView.swift */,
+				7F72717024D7A9B00064587A /* HYAudiovisualCommonManager.swift */,
+				7F72717724D7A9B00064587A /* HYAudiovisualSpeedyManager.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		7F72717124D7A9B00064587A /* ChildControlViews */ = {
+			isa = PBXGroup;
+			children = (
+				7F72718F24D7EE540064587A /* Cells */,
+				7F72717224D7A9B00064587A /* HYSpeedyRemindView.swift */,
+				7F72717324D7A9B00064587A /* HYEndPlayView.swift */,
+				7F72717424D7A9B00064587A /* HYControlPanelView.swift */,
+				7F72717524D7A9B00064587A /* HYFullScreenMaskView.swift */,
+				7F72717624D7A9B00064587A /* HYAudioPlayView.swift */,
+			);
+			path = ChildControlViews;
+			sourceTree = "<group>";
+		};
+		7F72718F24D7EE540064587A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7F72719024D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B717FC0DA78098B499F3D1A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				312CD825D97236A5AE22FB3C /* Pods_HYPlayerDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9D2D95A9EC5472D02717F2A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2EF199AEF2B1431C396C59B9 /* Pods-HYPlayerDemo.debug.xcconfig */,
+				0E52EF8F02AC7DE2298DEF60 /* Pods-HYPlayerDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F72713E24D7A9460064587A /* HYPlayerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F72715324D7A9490064587A /* Build configuration list for PBXNativeTarget "HYPlayerDemo" */;
+			buildPhases = (
+				7EA82056533A911E638488C5 /* [CP] Check Pods Manifest.lock */,
+				7F72713B24D7A9460064587A /* Sources */,
+				7F72713C24D7A9460064587A /* Frameworks */,
+				7F72713D24D7A9460064587A /* Resources */,
+				30FA23EF021389FB03935FD8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HYPlayerDemo;
+			productName = HYPlayerDemo;
+			productReference = 7F72713F24D7A9460064587A /* HYPlayerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F72713724D7A9460064587A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = "黄益";
+				TargetAttributes = {
+					7F72713E24D7A9460064587A = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = 7F72713A24D7A9460064587A /* Build configuration list for PBXProject "HYPlayerDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7F72713624D7A9460064587A;
+			productRefGroup = 7F72714024D7A9460064587A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F72713E24D7A9460064587A /* HYPlayerDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F72713D24D7A9460064587A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F72714F24D7A9490064587A /* LaunchScreen.storyboard in Resources */,
+				7F72718024D7A9B00064587A /* HYPlayer.bundle in Resources */,
+				7F72714C24D7A9490064587A /* Assets.xcassets in Resources */,
+				7F72714A24D7A9460064587A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30FA23EF021389FB03935FD8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EA82056533A911E638488C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HYPlayerDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F72713B24D7A9460064587A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FAAC14124D8F6B000FB7202 /* HYResponseExpandButtton.swift in Sources */,
+				7F72718D24D7A9B00064587A /* HYAudiovisualSpeedyManager.swift in Sources */,
+				7F72718924D7A9B00064587A /* HYEndPlayView.swift in Sources */,
+				7F72718824D7A9B00064587A /* HYSpeedyRemindView.swift in Sources */,
+				7F72718A24D7A9B00064587A /* HYControlPanelView.swift in Sources */,
+				7F72719124D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift in Sources */,
+				7F72717824D7A9B00064587A /* String+Encryption.swift in Sources */,
+				7F72717E24D7A9B00064587A /* HYMediaCacherDelegate.swift in Sources */,
+				7F72718224D7A9B00064587A /* HYAudiovisualCommonModel.swift in Sources */,
+				7F72717D24D7A9B00064587A /* HYMediaCacheDelegate.swift in Sources */,
+				7F72718724D7A9B00064587A /* HYAudiovisualCommonManager.swift in Sources */,
+				7F72714724D7A9460064587A /* ViewController.swift in Sources */,
+				7F72717C24D7A9B00064587A /* HYMediaCacher.swift in Sources */,
+				7F72718424D7A9B00064587A /* HYFileDirectory.swift in Sources */,
+				7F72718624D7A9B00064587A /* HYAudiovisualCommonView.swift in Sources */,
+				7F72718C24D7A9B00064587A /* HYAudioPlayView.swift in Sources */,
+				7F72714324D7A9460064587A /* AppDelegate.swift in Sources */,
+				7F72717B24D7A9B00064587A /* HYMediaCryptor.swift in Sources */,
+				7F72715724D7A99C0064587A /* VideoViewController.swift in Sources */,
+				7F72718324D7A9B00064587A /* HYCacheStorage.swift in Sources */,
+				7F72717924D7A9B00064587A /* HYDefaultVideoCacheLocation.swift in Sources */,
+				7F72718524D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift in Sources */,
+				7F72714524D7A9460064587A /* SceneDelegate.swift in Sources */,
+				7F72718B24D7A9B00064587A /* HYFullScreenMaskView.swift in Sources */,
+				7F72718124D7A9B00064587A /* HYAudiovisualCommonConfig.swift in Sources */,
+				7F72717A24D7A9B00064587A /* HYMediaCacheManager.swift in Sources */,
+				7F72717F24D7A9B00064587A /* HYMediaCacheLocation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7F72714824D7A9460064587A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F72714924D7A9460064587A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7F72714D24D7A9490064587A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F72714E24D7A9490064587A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7F72715124D7A9490064587A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7F72715224D7A9490064587A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7F72715424D7A9490064587A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EF199AEF2B1431C396C59B9 /* Pods-HYPlayerDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F9CH6W45WX;
+				INFOPLIST_FILE = HYPlayerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = E.HYPlayerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HYPlayerDemo/HYPlayerDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7F72715524D7A9490064587A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E52EF8F02AC7DE2298DEF60 /* Pods-HYPlayerDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F9CH6W45WX;
+				INFOPLIST_FILE = HYPlayerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = E.HYPlayerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HYPlayerDemo/HYPlayerDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F72713A24D7A9460064587A /* Build configuration list for PBXProject "HYPlayerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F72715124D7A9490064587A /* Debug */,
+				7F72715224D7A9490064587A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F72715324D7A9490064587A /* Build configuration list for PBXNativeTarget "HYPlayerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F72715424D7A9490064587A /* Debug */,
+				7F72715524D7A9490064587A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7F72713724D7A9460064587A /* Project object */;
+}

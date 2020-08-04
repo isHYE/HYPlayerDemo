@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "HYAudiovisualCommonManager.playerStatus.didset:HYAudiovisualCommonManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "status.controlPlayImg">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYFullScreenMaskView.hitTest(_:with:):HYFullScreenMaskView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "speedCollectionView.bounds.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYAudiovisualCommonView.dealForFullScreenPlayer():HYAudiovisualCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "SCREEN_HEIGHT">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYAudiovisualCommonView.playerPlay():HYAudiovisualCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "videoPlayer?.rate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYAudiovisualCommonView.playerViewDidTapped():HYAudiovisualCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "videoPlayer?.rate">
+            </PersistentString>
+            <PersistentString
+               value = "UIScreen.main.bounds.size.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

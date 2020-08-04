@@ -1,0 +1,6 @@
+framework module Pods_HYPlayerDemo {
+  umbrella header "Pods-HYPlayerDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

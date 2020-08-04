@@ -1,0 +1,16 @@
+PODS:
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - SnapKit
+
+SPEC REPOS:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - SnapKit
+
+SPEC CHECKSUMS:
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: 6b1ba4a78f888d98f8781966bc4c08dd246c19f9
+
+COCOAPODS: 1.9.1
