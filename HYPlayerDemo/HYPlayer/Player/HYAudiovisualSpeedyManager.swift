@@ -211,7 +211,7 @@ class HYAudiovisualSpeedyManager {
         playerView?.speedyRemindView?.isHidden = true
         
         if let currentSpeedyType = currentSpeedyType {
-            if currentSpeedyType == .fastRewind || currentSpeedyType == .fastRewind {
+            if currentSpeedyType == .fastForward || currentSpeedyType == .fastRewind {
                 playerView?.playerPlay()
             }
         }

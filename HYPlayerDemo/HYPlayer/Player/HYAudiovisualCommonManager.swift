@@ -51,6 +51,7 @@ class HYAudiovisualCommonManager: NSObject {
                         return
                     }
                     
+                    playerView?.isPlaying = true
                     playerView?.videoPlayer?.play()
                     if let rate = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float {
                         playerView?.videoPlayer?.rate = rate
@@ -63,14 +64,19 @@ class HYAudiovisualCommonManager: NSObject {
                     break
                 case .pause:
                     
-                    playerView?.playerPause()
+                    playerView?.isPlaying = false
+                    showControlPanel(animated: true)
                     
+                    hideTimer?.invalidate()
+                    playerView?.videoPlayer?.pause()
                     if !isVideo {
                         playerView?.audioPlayView?.stopAudioAnimation()
                     }
                     
                     break
                 case .stop:
+                    
+                    playerView?.isPlaying = false
                     playerView?.videoPlayer?.pause()
                     playerView?.videoPlayer?.replaceCurrentItem(with: nil)
                     break

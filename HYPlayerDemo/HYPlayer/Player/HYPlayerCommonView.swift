@@ -24,6 +24,8 @@ class HYPlayerCommonView: UIView {
     /// 播放器的父view
     weak var fatherView: UIView?
     
+    /// 是否正在播放
+    var isPlaying: Bool = false
     
     //MARK: View Control
     /// 封面图
@@ -163,6 +165,7 @@ class HYPlayerCommonView: UIView {
         fullMaskView?.backBtn.addTarget(self, action: #selector(screenButtonDidClicked), for: .touchUpInside)
         fullMaskView?.lockBtn.addTarget(self, action: #selector(fullScreenLockClicked), for: .touchUpInside)
         fullMaskView?.moreBtn.addTarget(self, action: #selector(fullScreenMoreClicked), for: .touchUpInside)
+        fullMaskView?.isHidden = true
         addSubview(fullMaskView!)
         fullMaskView?.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -200,21 +203,15 @@ extension HYPlayerCommonView {
     
     /** 暂停播放器*/
     func playerPause() {
-        manager?.showControlPanel(animated: true)
+        manager?.playerStatus = .pause
         playTimer?.invalidate()
-        manager?.hideTimer?.invalidate()
-        videoPlayer?.pause()
     }
     
     /** 继续播放*/
     func playerPlay() {
-        videoPlayer?.play()
-        if let rate = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float {
-            videoPlayer?.rate = rate
-        }
+        manager?.playerStatus = .playing
         
         playTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updatePanel(sender:)), userInfo: nil, repeats: true)
-        manager?.resetHideTimer()
     }
     
     /// 更新当前播放内容
