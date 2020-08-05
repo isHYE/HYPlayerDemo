@@ -1,5 +1,5 @@
 //
-//  HYAudiovisualCommonView.swift
+//  HYPlayerCommonView.swift
 //  SuperPlayerDemo
 //
 //  Created by 黄益 on 2020/7/29.
@@ -17,10 +17,10 @@ let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 /// 屏幕高度
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 
-class HYAudiovisualCommonView: UIView {
+class HYPlayerCommonView: UIView {
     
     /// 播放器回调
-    weak var delegate: HYAudiovisualCommonViewDelegate?
+    weak var delegate: HYPlayerCommonViewDelegate?
     /// 播放器的父view
     weak var fatherView: UIView?
     
@@ -191,12 +191,12 @@ class HYAudiovisualCommonView: UIView {
     deinit {
         
         NotificationCenter.default.removeObserver(self)
-        print("HYAudiovisualCommonView Deinit")
+        print("HYPlayerCommonView Deinit")
     }
 }
 
 //MARK: 公共配置方法
-extension HYAudiovisualCommonView {
+extension HYPlayerCommonView {
     
     /** 暂停播放器*/
     func playerPause() {
@@ -219,7 +219,7 @@ extension HYAudiovisualCommonView {
     
     /// 更新当前播放内容
     /// - Parameter commonConfig: 播放配置
-    func updateCurrentPlayer(playerConfig: HYAudiovisualCommonConfig) {
+    func updateCurrentPlayer(playerConfig: HYPlayerCommonConfig) {
         
         manager?.playerConfig = playerConfig
         audioPlayView?.isHidden = manager?.isVideo == true
@@ -251,7 +251,7 @@ extension HYAudiovisualCommonView {
 }
 
 //MARK: 私有处理方法
-extension HYAudiovisualCommonView {
+extension HYPlayerCommonView {
     
     /** 全屏播放处理*/
     private func dealForFullScreenPlayer()  {
@@ -303,7 +303,7 @@ extension HYAudiovisualCommonView {
 }
 
 //MARK: 屏幕拖动处理（快进|快退|亮度、音量调节）
-extension HYAudiovisualCommonView {
+extension HYPlayerCommonView {
     /** 开始滑动*/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, fullMaskView?.lockBtn.isSelected == false {
@@ -336,7 +336,7 @@ extension HYAudiovisualCommonView {
 }
 
 //MARK: 控件事件
-extension HYAudiovisualCommonView {
+extension HYPlayerCommonView {
     
     /** app退出活跃状态*/
     @objc func applicationWillResignActive() {
@@ -461,7 +461,7 @@ extension HYAudiovisualCommonView {
 }
 
 //MARK: 更多功能调整
-extension HYAudiovisualCommonView: HYFullScreenMaskViewDelegate {
+extension HYPlayerCommonView: HYFullScreenMaskViewDelegate {
     /** 更改播放器播放速度*/
     func changePlayerRate(rate: Float) {
         videoPlayer?.rate = rate
@@ -469,7 +469,7 @@ extension HYAudiovisualCommonView: HYFullScreenMaskViewDelegate {
 }
 
 //MARK: 缓存回调
-extension HYAudiovisualCommonView: HYMediaCacherDelegate {
+extension HYPlayerCommonView: HYMediaCacherDelegate {
     /** 缓存进度更新*/
     func cacher<LocationType>(_ cacher: HYMediaCacher<LocationType>, cacheProgress progress: Float, of cache: HYMediaCacheManager) where LocationType : HYMediaCacheLocation {
         print("缓存进度更新：\(progress)")

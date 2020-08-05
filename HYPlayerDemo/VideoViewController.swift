@@ -12,7 +12,7 @@ import SnapKit
 class VideoViewController: UIViewController {
     
 
-    var videoView: HYAudiovisualCommonView?
+    var videoView: HYPlayerCommonView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +63,9 @@ class VideoViewController: UIViewController {
         }
         
         
-        videoView = HYAudiovisualCommonView(playView)
-//        videoView?.updateCurrentPlayer(playerConfig: HYAudiovisualCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
-        videoView?.updateCurrentPlayer(playerConfig: HYAudiovisualCommonConfig(title: "视频测试", videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4", needCache: true, placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")))
-        
+        videoView = HYPlayerCommonView(playView)
+//        videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
+        videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "视频测试", videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4", needCache: true, placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")))
         
     }
     
@@ -78,6 +77,6 @@ class VideoViewController: UIViewController {
     
     /** 下载*/
     @objc private func changeToAudioPressed() {
-        videoView?.updateCurrentPlayer(playerConfig: HYAudiovisualCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
+        videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
     }
 }

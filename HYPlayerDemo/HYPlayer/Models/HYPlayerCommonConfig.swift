@@ -1,5 +1,5 @@
 //
-//  HYAudiovisualCommonConfig.swift
+//  HYPlayerCommonConfig.swift
 //  SuperPlayerDemo
 //
 //  Created by 黄益 on 2020/7/29.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HYAudiovisualCommonConfig {
+struct HYPlayerCommonConfig {
     
     /// 音视频标题
     var title: String?

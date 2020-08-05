@@ -12,13 +12,13 @@ import UIKit
 
 class HYAudiovisualCommonManager: NSObject {
     
-    weak var playerView: HYAudiovisualCommonView?
+    weak var playerView: HYPlayerCommonView?
     
     /// 隐藏状态栏计时器
     var hideTimer: Timer?
     
     /// 当前音视频配置
-    var playerConfig: HYAudiovisualCommonConfig? {
+    var playerConfig: HYPlayerCommonConfig? {
         willSet {
             // 判断是否为第一次初始化，否则判断是否进行断点续播存储
             if let config = playerConfig {
@@ -96,14 +96,14 @@ class HYAudiovisualCommonManager: NSObject {
     private var playStatusWhenPaused: (time: CMTime, playURL: URL)?
     
     
-    convenience init(_ view: HYAudiovisualCommonView) {
+    convenience init(_ view: HYPlayerCommonView) {
         self.init()
         
         playerView = view
     }
     
     /** 初始化播放器*/
-    func updatePlayerItem(config: HYAudiovisualCommonConfig) {
+    func updatePlayerItem(config: HYPlayerCommonConfig) {
         // 设置全屏标题
         playerView?.fullMaskView?.titleLab.text = config.title
         
@@ -163,7 +163,7 @@ class HYAudiovisualCommonManager: NSObject {
             if playContinue {
                 if let playContinueList = NSDictionary(contentsOfFile: playContiuneListPath) {
                     
-                    if let playContinueTime = playContinueList[urlStr.md5] as? Double,
+                    if let playContinueTime = playContinueList[urlStr.HYmd5] as? Double,
                         let timescale = playerView?.videoPlayer?.currentTime().timescale{
                         playerView?.videoPlayer?.seek(to: CMTime(seconds: playContinueTime, preferredTimescale: timescale))
                     }
@@ -216,11 +216,11 @@ class HYAudiovisualCommonManager: NSObject {
             if let playContinueList = NSDictionary(contentsOfFile: playContiuneListPath),
                 var playContinueDic = playContinueList as? Dictionary<String, Any> {
                 // 已存在记录 -> 添加
-                playContinueDic[urlStr.md5] = currentTime
+                playContinueDic[urlStr.HYmd5] = currentTime
                 (playContinueDic as NSDictionary).write(toFile: playContiuneListPath, atomically: true)
             } else {
                 // 未存在 —> 新增
-                ([urlStr.md5: currentTime] as NSDictionary).write(toFile: playContiuneListPath, atomically: true)
+                ([urlStr.HYmd5: currentTime] as NSDictionary).write(toFile: playContiuneListPath, atomically: true)
             }
         }
     }

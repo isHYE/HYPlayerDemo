@@ -1,5 +1,5 @@
 //
-//  String+Encryption.swift
+//  String+HYEncryption.swift
 //  SuperPlayerDemo
 //
 //  Created by 黄益 on 2020/7/29.
@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     /// md5加密
-    var md5: String {
+    var HYmd5: String {
         
         let context = UnsafeMutablePointer<CC_MD5_CTX>.allocate(capacity: 1)
         var digest = Array<UInt8>(repeating:0, count:Int(CC_MD5_DIGEST_LENGTH))

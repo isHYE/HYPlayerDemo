@@ -27,7 +27,7 @@ class HYAudiovisualSpeedyManager {
         
     }
     
-    weak var playerView: HYAudiovisualCommonView?
+    weak var playerView: HYPlayerCommonView?
     
     /// 当前快捷操作类型
     var currentSpeedyType: SpeedyType?
@@ -60,7 +60,7 @@ class HYAudiovisualSpeedyManager {
     /// 开始快捷操作
     private var isSpeedyStart = false
     
-    convenience init(_ view: HYAudiovisualCommonView) {
+    convenience init(_ view: HYPlayerCommonView) {
         self.init()
         
         playerView = view

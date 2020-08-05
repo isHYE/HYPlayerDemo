@@ -14,7 +14,7 @@
 		7F72714C24D7A9490064587A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F72714B24D7A9490064587A /* Assets.xcassets */; };
 		7F72714F24D7A9490064587A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F72714D24D7A9490064587A /* LaunchScreen.storyboard */; };
 		7F72715724D7A99C0064587A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715624D7A99B0064587A /* VideoViewController.swift */; };
-		7F72717824D7A9B00064587A /* String+Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715A24D7A9B00064587A /* String+Encryption.swift */; };
+		7F72717824D7A9B00064587A /* String+HYEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715A24D7A9B00064587A /* String+HYEncryption.swift */; };
 		7F72717924D7A9B00064587A /* HYDefaultVideoCacheLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715C24D7A9B00064587A /* HYDefaultVideoCacheLocation.swift */; };
 		7F72717A24D7A9B00064587A /* HYMediaCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715D24D7A9B00064587A /* HYMediaCacheManager.swift */; };
 		7F72717B24D7A9B00064587A /* HYMediaCryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72715E24D7A9B00064587A /* HYMediaCryptor.swift */; };
@@ -23,12 +23,12 @@
 		7F72717E24D7A9B00064587A /* HYMediaCacherDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716224D7A9B00064587A /* HYMediaCacherDelegate.swift */; };
 		7F72717F24D7A9B00064587A /* HYMediaCacheLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716324D7A9B00064587A /* HYMediaCacheLocation.swift */; };
 		7F72718024D7A9B00064587A /* HYPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7F72716524D7A9B00064587A /* HYPlayer.bundle */; };
-		7F72718124D7A9B00064587A /* HYAudiovisualCommonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716724D7A9B00064587A /* HYAudiovisualCommonConfig.swift */; };
+		7F72718124D7A9B00064587A /* HYPlayerCommonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716724D7A9B00064587A /* HYPlayerCommonConfig.swift */; };
 		7F72718224D7A9B00064587A /* HYAudiovisualCommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716824D7A9B00064587A /* HYAudiovisualCommonModel.swift */; };
 		7F72718324D7A9B00064587A /* HYCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716A24D7A9B00064587A /* HYCacheStorage.swift */; };
 		7F72718424D7A9B00064587A /* HYFileDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716B24D7A9B00064587A /* HYFileDirectory.swift */; };
-		7F72718524D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716D24D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift */; };
-		7F72718624D7A9B00064587A /* HYAudiovisualCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716F24D7A9B00064587A /* HYAudiovisualCommonView.swift */; };
+		7F72718524D7A9B00064587A /* HYPlayerCommonViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716D24D7A9B00064587A /* HYPlayerCommonViewDelegate.swift */; };
+		7F72718624D7A9B00064587A /* HYPlayerCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72716F24D7A9B00064587A /* HYPlayerCommonView.swift */; };
 		7F72718724D7A9B00064587A /* HYAudiovisualCommonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717024D7A9B00064587A /* HYAudiovisualCommonManager.swift */; };
 		7F72718824D7A9B00064587A /* HYSpeedyRemindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717224D7A9B00064587A /* HYSpeedyRemindView.swift */; };
 		7F72718924D7A9B00064587A /* HYEndPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717324D7A9B00064587A /* HYEndPlayView.swift */; };
@@ -54,7 +54,7 @@
 		7F72714E24D7A9490064587A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F72715024D7A9490064587A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F72715624D7A99B0064587A /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		7F72715A24D7A9B00064587A /* String+Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encryption.swift"; sourceTree = "<group>"; };
+		7F72715A24D7A9B00064587A /* String+HYEncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+HYEncryption.swift"; sourceTree = "<group>"; };
 		7F72715C24D7A9B00064587A /* HYDefaultVideoCacheLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYDefaultVideoCacheLocation.swift; sourceTree = "<group>"; };
 		7F72715D24D7A9B00064587A /* HYMediaCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCacheManager.swift; sourceTree = "<group>"; };
 		7F72715E24D7A9B00064587A /* HYMediaCryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCryptor.swift; sourceTree = "<group>"; };
@@ -63,12 +63,12 @@
 		7F72716224D7A9B00064587A /* HYMediaCacherDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCacherDelegate.swift; sourceTree = "<group>"; };
 		7F72716324D7A9B00064587A /* HYMediaCacheLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYMediaCacheLocation.swift; sourceTree = "<group>"; };
 		7F72716524D7A9B00064587A /* HYPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HYPlayer.bundle; sourceTree = "<group>"; };
-		7F72716724D7A9B00064587A /* HYAudiovisualCommonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonConfig.swift; sourceTree = "<group>"; };
+		7F72716724D7A9B00064587A /* HYPlayerCommonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYPlayerCommonConfig.swift; sourceTree = "<group>"; };
 		7F72716824D7A9B00064587A /* HYAudiovisualCommonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonModel.swift; sourceTree = "<group>"; };
 		7F72716A24D7A9B00064587A /* HYCacheStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYCacheStorage.swift; sourceTree = "<group>"; };
 		7F72716B24D7A9B00064587A /* HYFileDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYFileDirectory.swift; sourceTree = "<group>"; };
-		7F72716D24D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonViewDelegate.swift; sourceTree = "<group>"; };
-		7F72716F24D7A9B00064587A /* HYAudiovisualCommonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonView.swift; sourceTree = "<group>"; };
+		7F72716D24D7A9B00064587A /* HYPlayerCommonViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYPlayerCommonViewDelegate.swift; sourceTree = "<group>"; };
+		7F72716F24D7A9B00064587A /* HYPlayerCommonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYPlayerCommonView.swift; sourceTree = "<group>"; };
 		7F72717024D7A9B00064587A /* HYAudiovisualCommonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYAudiovisualCommonManager.swift; sourceTree = "<group>"; };
 		7F72717224D7A9B00064587A /* HYSpeedyRemindView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYSpeedyRemindView.swift; sourceTree = "<group>"; };
 		7F72717324D7A9B00064587A /* HYEndPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYEndPlayView.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		7F72715924D7A9B00064587A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				7F72715A24D7A9B00064587A /* String+Encryption.swift */,
+				7F72715A24D7A9B00064587A /* String+HYEncryption.swift */,
 				7FAAC14024D8F6B000FB7202 /* HYResponseExpandButtton.swift */,
 			);
 			path = Extension;
@@ -184,7 +184,7 @@
 		7F72716624D7A9B00064587A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7F72716724D7A9B00064587A /* HYAudiovisualCommonConfig.swift */,
+				7F72716724D7A9B00064587A /* HYPlayerCommonConfig.swift */,
 				7F72716824D7A9B00064587A /* HYAudiovisualCommonModel.swift */,
 			);
 			path = Models;
@@ -202,7 +202,7 @@
 		7F72716C24D7A9B00064587A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				7F72716D24D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift */,
+				7F72716D24D7A9B00064587A /* HYPlayerCommonViewDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				7F72717124D7A9B00064587A /* ChildControlViews */,
-				7F72716F24D7A9B00064587A /* HYAudiovisualCommonView.swift */,
+				7F72716F24D7A9B00064587A /* HYPlayerCommonView.swift */,
 				7F72717024D7A9B00064587A /* HYAudiovisualCommonManager.swift */,
 				7F72717724D7A9B00064587A /* HYAudiovisualSpeedyManager.swift */,
 			);
@@ -378,7 +378,7 @@
 				7F72718824D7A9B00064587A /* HYSpeedyRemindView.swift in Sources */,
 				7F72718A24D7A9B00064587A /* HYControlPanelView.swift in Sources */,
 				7F72719124D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift in Sources */,
-				7F72717824D7A9B00064587A /* String+Encryption.swift in Sources */,
+				7F72717824D7A9B00064587A /* String+HYEncryption.swift in Sources */,
 				7F72717E24D7A9B00064587A /* HYMediaCacherDelegate.swift in Sources */,
 				7F72718224D7A9B00064587A /* HYAudiovisualCommonModel.swift in Sources */,
 				7F72717D24D7A9B00064587A /* HYMediaCacheDelegate.swift in Sources */,
@@ -386,17 +386,17 @@
 				7F72714724D7A9460064587A /* ViewController.swift in Sources */,
 				7F72717C24D7A9B00064587A /* HYMediaCacher.swift in Sources */,
 				7F72718424D7A9B00064587A /* HYFileDirectory.swift in Sources */,
-				7F72718624D7A9B00064587A /* HYAudiovisualCommonView.swift in Sources */,
+				7F72718624D7A9B00064587A /* HYPlayerCommonView.swift in Sources */,
 				7F72718C24D7A9B00064587A /* HYAudioPlayView.swift in Sources */,
 				7F72714324D7A9460064587A /* AppDelegate.swift in Sources */,
 				7F72717B24D7A9B00064587A /* HYMediaCryptor.swift in Sources */,
 				7F72715724D7A99C0064587A /* VideoViewController.swift in Sources */,
 				7F72718324D7A9B00064587A /* HYCacheStorage.swift in Sources */,
 				7F72717924D7A9B00064587A /* HYDefaultVideoCacheLocation.swift in Sources */,
-				7F72718524D7A9B00064587A /* HYAudiovisualCommonViewDelegate.swift in Sources */,
+				7F72718524D7A9B00064587A /* HYPlayerCommonViewDelegate.swift in Sources */,
 				7F72714524D7A9460064587A /* SceneDelegate.swift in Sources */,
 				7F72718B24D7A9B00064587A /* HYFullScreenMaskView.swift in Sources */,
-				7F72718124D7A9B00064587A /* HYAudiovisualCommonConfig.swift in Sources */,
+				7F72718124D7A9B00064587A /* HYPlayerCommonConfig.swift in Sources */,
 				7F72717A24D7A9B00064587A /* HYMediaCacheManager.swift in Sources */,
 				7F72717F24D7A9B00064587A /* HYMediaCacheLocation.swift in Sources */,
 			);

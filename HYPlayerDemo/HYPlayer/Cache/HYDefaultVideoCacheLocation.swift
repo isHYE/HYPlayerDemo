@@ -32,7 +32,7 @@ struct HYDefaultVideoCacheLocation: HYMediaCacheLocation {
         
         func playURL(originalURL: URL, identifier: String) -> URL {
             
-            let fileName = (identifier + "_decrypted").md5
+            let fileName = (identifier + "_decrypted").HYmd5
             let filePath = videoDirectory + "/" + fileName + "." + originalURL.pathExtension
             return URL(fileURLWithPath: filePath)
         }
@@ -44,7 +44,7 @@ struct HYDefaultVideoCacheLocation: HYMediaCacheLocation {
             return URL(fileURLWithPath: filePath)
         }
         
-        self.identifier = remoteURL.absoluteString.md5
+        self.identifier = remoteURL.absoluteString.HYmd5
         
         self.originalURL = remoteURL
         self.authenticatedURL = remoteURL

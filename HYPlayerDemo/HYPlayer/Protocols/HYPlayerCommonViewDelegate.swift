@@ -1,5 +1,5 @@
 //
-//  HYAudiovisualCommonViewDelegate.swift
+//  HYPlayerCommonViewDelegate.swift
 //  SuperPlayerDemo
 //
 //  Created by 黄益 on 2020/7/29.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HYAudiovisualCommonViewDelegate: NSObjectProtocol {
+protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
     
     /** 全屏状态改变*/
     func changeFullScreen(isFull: Bool)
