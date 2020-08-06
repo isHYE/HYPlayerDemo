@@ -8,6 +8,8 @@ target 'HYPlayerDemo' do
   use_frameworks!
 
   # Pods for HYPlayerDemo
+  # 布局
   pod 'SnapKit'
-
+  # 网络检测
+  pod 'Reachability'
 end

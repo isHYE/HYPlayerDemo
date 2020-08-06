@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct HYPlayerCommonConfig {
     
@@ -30,11 +31,44 @@ struct HYPlayerCommonConfig {
     var placeHoldImgStr: String?
     var placeHoldImgUrl: URL?
     
-    init<T>(title: String = "", audioUrl: String? = nil, videoUrl: String? = nil, needCache: Bool = false, playContinue: Bool = true, placeHoldImg: T? = nil) {
+    /// 自定义播放结束页面
+    var customEndView: UIView?
+    /// 自定义音频播放页面
+    var customAudioView: UIView?
+    
+    /// 鉴权方法
+    var authenticationFunc: ((URL) -> URL)?
+    
+    
+    
+    /// 初始化播放器配置
+    /// - Parameters:
+    ///   - title: 播放音视频标题（全屏时显示），可不传
+    ///   - audioUrl: 播放音频地址
+    ///   - videoUrl: 播放视频地址（不传则播放音频）
+    ///   - needCache: 是否需要缓存（默认不开启）
+    ///   - playContinue: 是否断点续播（默认开启）
+    ///   - placeHoldImg: 封面图（可传本地图片String或网络图片URL）
+    ///   - customEndView: 自定义播放结束界面（可不传）
+    ///   - customAudioView: 自定义音频播放界面（可不传）
+    ///   - authenticationFunc: 播放地址鉴权函数(可不传)
+    init<T>(title: String = "",
+            audioUrl: String? = nil,
+            videoUrl: String? = nil,
+            needCache: Bool = false,
+            playContinue: Bool = true,
+            placeHoldImg: T? = nil,
+            customEndView: UIView? = nil,
+            customAudioView: UIView? = nil,
+            authenticationFunc: ((URL) -> URL)? = nil)
+    {
         self.title = title
         self.audioUrl = audioUrl
         self.videoUrl = videoUrl
         self.needCache = needCache
+        self.customEndView = customEndView
+        self.customAudioView = customAudioView
+        self.authenticationFunc = authenticationFunc
         
         if let img = placeHoldImg {
             if let imgStr = img as? String {

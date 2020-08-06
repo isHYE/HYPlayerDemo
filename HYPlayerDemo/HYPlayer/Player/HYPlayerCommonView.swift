@@ -448,6 +448,8 @@ extension HYPlayerCommonView {
     /** 视频播放完毕*/
     @objc func avplayerItemDidPlayToEndTime(_ notification: Notification) {
         endPlayView?.isHidden = false
+        
+        delegate?.stopPlayer()
         print("视频播放完毕")
     }
     

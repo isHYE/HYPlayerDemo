@@ -64,6 +64,7 @@ class VideoViewController: UIViewController {
         
         
         videoView = HYPlayerCommonView(playView)
+        videoView?.delegate = self
 //        videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
         videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "视频测试", videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4", needCache: true, placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")))
         
@@ -80,3 +81,31 @@ class VideoViewController: UIViewController {
         videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
     }
 }
+
+extension VideoViewController: HYPlayerCommonViewDelegate {
+    /** 全屏状态改变*/
+    func changeFullScreen(isFull: Bool) {
+        print(isFull ? "全屏" : "退出全屏")
+    }
+    
+    /** 流量提醒*/
+    func flowRemind() {
+        print("正在使用流量")
+    }
+    
+    /** 开始播放*/
+    func startPlayer() {
+        print("开始播放")
+    }
+    
+    /** 播放暂停*/
+    func pausePlayer() {
+        print("暂停播放")
+    }
+    
+    /** 结束播放*/
+    func stopPlayer() {
+        print("结束播放")
+    }
+}
+

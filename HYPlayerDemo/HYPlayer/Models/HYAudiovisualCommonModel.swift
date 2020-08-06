@@ -8,6 +8,32 @@
 
 import Foundation
 import UIKit
+import Reachability
+
+///网络状态
+var HYReach: Reachability = {
+    let reach = Reachability.forInternetConnection()!
+    
+    // Set the blocks
+    reach.reachableBlock = {
+        (reach: Reachability?) -> Void in
+        // keep in mind this is called on a background thread
+        // and if you are updating the UI it needs to happen
+        // on the main thread, like this:
+        DispatchQueue.main.async {
+            print("REACHABLE!")
+            
+        }
+    }
+    
+    reach.unreachableBlock = {
+        (reach: Reachability?) -> Void in
+        print("UNREACHABLE!")
+    }
+    
+    reach.startNotifier()
+    return reach
+}()
 
 enum HYAudiovisualStatus {
     

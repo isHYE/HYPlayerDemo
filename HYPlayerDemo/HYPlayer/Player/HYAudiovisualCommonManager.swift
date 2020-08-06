@@ -25,6 +25,15 @@ class HYAudiovisualCommonManager: NSObject {
                 if config.playContinue {
                     setPlayContinue()
                 }
+                firstLoad = false
+            } else {
+                
+                if HYReach.isReachableViaWWAN() {
+                    print("当前使用手机流量")
+                    playerView?.delegate?.flowRemind()
+                }
+                
+                firstLoad = true
             }
         }
         
@@ -61,6 +70,8 @@ class HYAudiovisualCommonManager: NSObject {
                     }
                     showControlPanel(animated: true)
                     resetHideTimer()
+                    
+                    playerView?.delegate?.startPlayer()
                     break
                 case .pause:
                     
@@ -73,6 +84,7 @@ class HYAudiovisualCommonManager: NSObject {
                         playerView?.audioPlayView?.stopAudioAnimation()
                     }
                     
+                    playerView?.delegate?.pausePlayer()
                     break
                 case .stop:
                     
@@ -92,6 +104,8 @@ class HYAudiovisualCommonManager: NSObject {
     /// 当前播放器是否全屏
     var isFullScreen = false
     
+    /// 是否第一次加载（非流量不自动播放）
+    private var firstLoad = true
     /// 视频缓存
     private let videoCacher: HYMediaCacher = HYMediaCacher<HYDefaultVideoCacheLocation>()
     /// 断点续播节点列表
@@ -126,11 +140,25 @@ class HYAudiovisualCommonManager: NSObject {
             }
         }
         
+        if let customEndView = config.customEndView {
+            playerView?.endPlayView?.addSubview(customEndView)
+            customEndView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+        }
+        
+        if let customAudioView = config.customAudioView {
+            playerView?.audioPlayView?.addSubview(customAudioView)
+            customAudioView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+        }
+        
         // 初始化播放器
         if let urlStr = config.videoUrl {
-            playVideo(urlStr: urlStr, needCache: config.needCache, playContinue: config.playContinue)
+            playVideo(urlStr: urlStr, config: config)
         } else if let urlStr = config.audioUrl {
-            playVideo(urlStr: urlStr, needCache: config.needCache, playContinue: config.playContinue)
+            playVideo(urlStr: urlStr, config: config)
         }
     }
     
@@ -139,14 +167,17 @@ class HYAudiovisualCommonManager: NSObject {
         playerView?.endPlayView?.isHidden = true
         
         playerView?.videoPlayer?.seek(to: CMTime(seconds: 0, preferredTimescale: 1))
-        playerView?.videoPlayer?.play()
-        if let rate = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float {
-            playerView?.videoPlayer?.rate = rate
-        }
+        playerStatus = .playing
+        
+        
+//        playerView?.videoPlayer?.play()
+//        if let rate = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float {
+//            playerView?.videoPlayer?.rate = rate
+//        }
     }
     
     /** 播放视频*/
-    private func playVideo(urlStr: String, needCache: Bool, playContinue: Bool) {
+    private func playVideo(urlStr: String, config: HYPlayerCommonConfig) {
         
         func playVideo(item: AVPlayerItem) {
             playerView?.videoPlayer?.pause()
@@ -164,9 +195,21 @@ class HYAudiovisualCommonManager: NSObject {
             }
             
             /// 进行视频的播放
-            playerStatus = .playing
+            if firstLoad && HYReach.isReachableViaWWAN() {
+                if videoCacher.isUrlCached(url: urlStr) {
+                    // 播放已经缓存的音视频
+                    playerStatus = .playing
+                    print("播放已经缓存的音视频")
+                } else {
+                    playerStatus = .pause
+                }
+            } else {
+                playerStatus = .playing
+            }
             
-            if playContinue {
+            firstLoad = false
+            
+            if config.playContinue {
                 if let playContinueList = NSDictionary(contentsOfFile: playContiuneListPath) {
                     
                     if let playContinueTime = playContinueList[urlStr.HYmd5] as? Double,
@@ -180,9 +223,9 @@ class HYAudiovisualCommonManager: NSObject {
         currentPlayerUrl = urlStr
         
         let videoUrl = URL(string: urlStr)
-        if needCache {
+        if config.needCache && !HYReach.isReachableViaWWAN() {
             // 缓存的处理
-            let location = HYDefaultVideoCacheLocation(remoteURL: videoUrl!, mediaType: isVideo ? .video : .audio)
+            let location = HYDefaultVideoCacheLocation(remoteURL: videoUrl!, mediaType: isVideo ? .video : .audio, authenticationFunc: config.authenticationFunc)
             let canCache = HYCacheStorage.available > Float(500 * 1024 * 1024)
             videoCacher.delegate = playerView
             
@@ -207,7 +250,12 @@ class HYAudiovisualCommonManager: NSObject {
             }
         } else {
             // 不缓存 -> 直接播放
-            let item = AVPlayerItem(url: videoUrl!)
+            var item: AVPlayerItem
+            if let authenticationFunc = config.authenticationFunc {
+                item = AVPlayerItem(url: authenticationFunc(videoUrl!))
+            } else {
+                item = AVPlayerItem(url: videoUrl!)
+            }
             
             playVideo(item: item)
         }

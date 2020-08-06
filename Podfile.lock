@@ -1,16 +1,20 @@
 PODS:
+  - Reachability (3.2)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - Reachability
   - SnapKit
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - Reachability
     - SnapKit
 
 SPEC CHECKSUMS:
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 6b1ba4a78f888d98f8781966bc4c08dd246c19f9
+PODFILE CHECKSUM: 1719aa28e04cfc869ad9bcebe4ae8b57bfb44343
 
 COCOAPODS: 1.9.1

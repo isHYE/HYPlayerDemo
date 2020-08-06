@@ -114,6 +114,14 @@ public class HYMediaCacher<Location: HYMediaCacheLocation> {
         return cache
     }
     
+    /// 判断音视频是否已经缓存
+    public func isUrlCached(url: String) -> Bool {
+        if cacheList.contains(url.HYmd5) {
+            return true
+        }
+        return false
+    }
+    
     /// 开始视频缓存
     public func startCache(_ cache: HYMediaCacheManager) {
         

@@ -3,10 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "HYAudiovisualCommonManager.playerStatus.didset:HYAudiovisualCommonManager.swift">
+         contextName = "HYAudiovisualCommonView.playerViewDidTapped():HYAudiovisualCommonView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "status.controlPlayImg">
+               value = "videoPlayer?.rate">
+            </PersistentString>
+            <PersistentString
+               value = "UIScreen.main.bounds.size.height">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -35,13 +38,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "HYAudiovisualCommonView.playerViewDidTapped():HYAudiovisualCommonView.swift">
+         contextName = "HYPlayerCommonView.avplayerItemDidPlayToEndTime(_:):HYPlayerCommonView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "videoPlayer?.rate">
+               value = "endPlayView">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYAudiovisualCommonManager.playerStatus.didset:HYAudiovisualCommonManager.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "UIScreen.main.bounds.size.height">
+               value = "status.controlPlayImg">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

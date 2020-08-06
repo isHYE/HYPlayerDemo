@@ -27,7 +27,18 @@ struct HYDefaultVideoCacheLocation: HYMediaCacheLocation {
     
     let mediaType: HYMediaType
     
+    init(remoteURL: URL, mediaType: HYMediaType, authenticationFunc: ((URL) -> URL)? = nil) {
+        self.init(remoteURL: remoteURL, mediaType: mediaType)
+        
+        
+        if let authenticationFunc = authenticationFunc {
+            self.authenticatedURL = authenticationFunc(remoteURL)
+        }
+    }
+    
+    // , authenticationFunc: ((URL) -> URL)? = nil
     init(remoteURL: URL, mediaType: HYMediaType) {
+        
         let videoDirectory = HYFileDirectory.VideoCache.videoDirectory
         
         func playURL(originalURL: URL, identifier: String) -> URL {
@@ -47,6 +58,7 @@ struct HYDefaultVideoCacheLocation: HYMediaCacheLocation {
         self.identifier = remoteURL.absoluteString.HYmd5
         
         self.originalURL = remoteURL
+        
         self.authenticatedURL = remoteURL
         
         self.storageURL = storageURL(originalURL: remoteURL, identifier: identifier)

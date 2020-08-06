@@ -16,4 +16,21 @@ protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
     /** 流量提醒*/
     func flowRemind()
     
+    /** 开始播放*/
+    func startPlayer()
+    
+    /** 播放暂停*/
+    func pausePlayer()
+    
+    /** 结束播放*/
+    func stopPlayer()
+    
+}
+
+extension HYPlayerCommonViewDelegate {
+    func changeFullScreen(isFull: Bool){}
+    func flowRemind(){}
+    func startPlayer(){}
+    func pausePlayer(){}
+    func stopPlayer(){}
 }
