@@ -11,11 +11,11 @@ import SnapKit
 import AVFoundation
 
 /// 资源文件
-let SOURCE_BUNDLE = Bundle.init(path: Bundle.main.path(forResource: "HYPlayer", ofType: "bundle")! + "/Icons")
+let HY_SOURCE_BUNDLE = Bundle.init(path: Bundle.main.path(forResource: "HYPlayer", ofType: "bundle")! + "/Icons")
 /// 屏幕宽度
-let SCREEN_WIDTH = UIScreen.main.bounds.size.width
+let HY_SCREEN_WIDTH = UIScreen.main.bounds.size.width
 /// 屏幕高度
-let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
+let HY_SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 
 class HYPlayerCommonView: UIView {
     
@@ -259,7 +259,7 @@ extension HYPlayerCommonView {
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
         manager?.isFullScreen = true
         fullMaskView?.isHidden = false
-        controlPanel?.screenButton.setImage(UIImage(named: "hy_video_ic_fullscreen", in: SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        controlPanel?.screenButton.setImage(UIImage(named: "hy_video_ic_fullscreen", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
         
         removeFromSuperview()
         UIApplication.shared.windows.first?.addSubview(self)
@@ -286,7 +286,7 @@ extension HYPlayerCommonView {
         controlPanel.isHidden = false
         bringSubviewToFront(controlPanel)
         controlPanel.alpha = 1
-        controlPanel?.screenButton.setImage(UIImage(named: "hy_video_ic_normalscreen", in: SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        controlPanel?.screenButton.setImage(UIImage(named: "hy_video_ic_normalscreen", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
         
         removeFromSuperview()
         fatherView?.addSubview(self)
@@ -294,7 +294,7 @@ extension HYPlayerCommonView {
             make.edges.equalToSuperview()
         }
         
-        playerLayer?.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_WIDTH / 16 * 9)
+        playerLayer?.frame = CGRect(x: 0, y: 0, width: HY_SCREEN_WIDTH, height: HY_SCREEN_WIDTH / 16 * 9)
         
     }
 }
@@ -350,7 +350,7 @@ extension HYPlayerCommonView {
     
     /** 播放器屏幕被点击 -> 呼出控制面板*/
     @objc func playerViewDidTapped() {
-        if fullMaskView?.moreFunctionView.frame.origin.x == SCREEN_HEIGHT - (fullMaskView?.moreFunctionWidth ?? 0) {
+        if fullMaskView?.moreFunctionView.frame.origin.x == HY_SCREEN_HEIGHT - (fullMaskView?.moreFunctionWidth ?? 0) {
             // 收起更多功能面板
             fullMaskView?.hidMoreFunctionView()
             manager?.hideControlPanel(sender: nil)
@@ -415,7 +415,7 @@ extension HYPlayerCommonView {
     
     /** 全屏更多功能*/
     @objc private func fullScreenMoreClicked() {
-        if fullMaskView?.moreFunctionView.frame.origin.x == SCREEN_HEIGHT {
+        if fullMaskView?.moreFunctionView.frame.origin.x == HY_SCREEN_HEIGHT {
             fullMaskView?.showMoreFunctionView()
             manager?.hideTimer?.invalidate()
         } else {
@@ -473,7 +473,7 @@ extension HYPlayerCommonView: HYMediaCacherDelegate {
     func cacher<LocationType>(_ cacher: HYMediaCacher<LocationType>, cacheProgress progress: Float, of cache: HYMediaCacheManager) where LocationType : HYMediaCacheLocation {
         print("缓存进度更新：\(progress)")
         
-        controlPanel.cacheView.frame = CGRect(x: 48, y: 20, width: (SCREEN_WIDTH - 176) * CGFloat(progress), height: 1)
+        controlPanel.cacheView.frame = CGRect(x: 48, y: 20, width: (HY_SCREEN_WIDTH - 176) * CGFloat(progress), height: 1)
     }
     
     /** 缓存开始*/

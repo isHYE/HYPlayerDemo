@@ -28,7 +28,7 @@ class HYFullScreenMaskView: UIView {
     /// 退出全屏
     var backBtn: HYResponseExpandButtton = {
         let btn = HYResponseExpandButtton.init(type: .custom)
-        btn.setImage(UIImage(named: "hy_video_ic_back", in: SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        btn.setImage(UIImage(named: "hy_video_ic_back", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
         return btn
     }()
     
@@ -52,15 +52,15 @@ class HYFullScreenMaskView: UIView {
     /// 更多功能
     var moreBtn: HYResponseExpandButtton = {
         let btn = HYResponseExpandButtton()
-        btn.setImage(UIImage(named: "hy_fullscreen_ic_more", in: SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        btn.setImage(UIImage(named: "hy_fullscreen_ic_more", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
         return btn
     }()
     
     /// 屏幕锁定按钮
     var lockBtn: HYResponseExpandButtton = {
         let btn = HYResponseExpandButtton()
-        btn.setImage(UIImage(named: "hy_fullscreen_unlock", in: SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
-        btn.setImage(UIImage(named: "hy_fullscreen_lock", in: SOURCE_BUNDLE, compatibleWith: nil), for: .selected)
+        btn.setImage(UIImage(named: "hy_fullscreen_unlock", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        btn.setImage(UIImage(named: "hy_fullscreen_lock", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .selected)
         return btn
     }()
     
@@ -147,7 +147,7 @@ class HYFullScreenMaskView: UIView {
     
     /** 创建更多功能面板*/
     private func createMoreFunctionView() {
-        moreFunctionView.frame = CGRect(x: SCREEN_HEIGHT, y: 64, width: 100, height: SCREEN_WIDTH - 104)
+        moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT, y: 64, width: 100, height: HY_SCREEN_WIDTH - 104)
         addSubview(moreFunctionView)
         
         let speedLab = UILabel()
@@ -174,14 +174,14 @@ class HYFullScreenMaskView: UIView {
     /** 展示更多功能面板*/
     func showMoreFunctionView() {
         UIView.animate(withDuration: 0.2) {
-            self.moreFunctionView.frame = CGRect(x: SCREEN_HEIGHT - self.moreFunctionWidth, y: 64, width: self.moreFunctionWidth, height: SCREEN_WIDTH - 104)
+            self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT - self.moreFunctionWidth, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - 104)
         }
     }
     
     /** 隐藏更多功能面板*/
     func hidMoreFunctionView() {
         UIView.animate(withDuration: 0.2) {
-            self.moreFunctionView.frame = CGRect(x: SCREEN_HEIGHT, y: 64, width: self.moreFunctionWidth, height: SCREEN_WIDTH - 104)
+            self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - 104)
         }
     }
     

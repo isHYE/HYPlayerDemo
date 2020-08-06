@@ -13,7 +13,7 @@ class HYAudioPlayView: UIView {
     /// 音阶
     var audioImgView: UIImageView = {
         let imgView = UIImageView()
-        imgView.image = UIImage(named: "hy_audio_ic_Play_0", in: SOURCE_BUNDLE, compatibleWith: nil)
+        imgView.image = UIImage(named: "hy_audio_ic_Play_0", in: HY_SOURCE_BUNDLE, compatibleWith: nil)
         return imgView
     }()
 
@@ -40,7 +40,7 @@ class HYAudioPlayView: UIView {
     func startAudioAnimation() {
         var imgArray: [UIImage] = []
         for i in 0...4{
-            imgArray.append(UIImage(named: "hy_audio_ic_Play_\(i)", in: SOURCE_BUNDLE, compatibleWith: nil)!)
+            imgArray.append(UIImage(named: "hy_audio_ic_Play_\(i)", in: HY_SOURCE_BUNDLE, compatibleWith: nil)!)
         }
         
         audioImgView.animationImages = imgArray

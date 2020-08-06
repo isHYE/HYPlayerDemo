@@ -13,14 +13,14 @@ class HYControlPanelView: UIView {
     /// 播放｜暂停
     var playButton: HYResponseExpandButtton = {
         let btn = HYResponseExpandButtton()
-        btn.setImage(UIImage(named: "hy_video_ic_play", in: SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        btn.setImage(UIImage(named: "hy_video_ic_play", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
         return btn
     }()
     
     /// 全屏
     var screenButton: HYResponseExpandButtton = {
         let btn = HYResponseExpandButtton()
-        btn.setImage(UIImage(named: "hy_video_ic_normalscreen", in: SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        btn.setImage(UIImage(named: "hy_video_ic_normalscreen", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
         return btn
     }()
     
@@ -40,7 +40,7 @@ class HYControlPanelView: UIView {
         slider.maximumValue = 1
         slider.minimumTrackTintColor = UIColor.white
         slider.maximumTrackTintColor = UIColor.white.withAlphaComponent(0.4)
-        slider.setThumbImage(UIImage(named: "hy_video_ic_slider", in: SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        slider.setThumbImage(UIImage(named: "hy_video_ic_slider", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
         return slider
     }()
     

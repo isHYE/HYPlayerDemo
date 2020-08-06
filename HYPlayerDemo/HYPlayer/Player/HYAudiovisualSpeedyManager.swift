@@ -88,13 +88,13 @@ class HYAudiovisualSpeedyManager {
             // 快进｜快退
             currentSpeedyType = point.x > startPoint.x ? .fastForward : .fastRewind
         }
-        else if startPoint.x < SCREEN_WIDTH / 2
+        else if startPoint.x < HY_SCREEN_WIDTH / 2
             && abs(point.x - startPoint.x) < abs(point.y - startPoint.y)
             && (currentSpeedyType == nil || currentSpeedyType == .lightingUp || currentSpeedyType == .lightingDown)
         {
             currentSpeedyType = point.y < startPoint.y ? .lightingUp : .lightingDown
         }
-        else if startPoint.x > SCREEN_WIDTH / 2
+        else if startPoint.x > HY_SCREEN_WIDTH / 2
             && abs(point.x - startPoint.x) < abs(point.y - startPoint.y)
             && (currentSpeedyType == nil || currentSpeedyType == .volumeUp || currentSpeedyType == .volumeDown)
         {

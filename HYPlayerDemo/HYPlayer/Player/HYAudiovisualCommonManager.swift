@@ -187,7 +187,7 @@ class HYAudiovisualCommonManager: NSObject {
                 playerView?.videoPlayer = AVPlayer(playerItem: item)
                 playerView?.playerLayer = AVPlayerLayer(player: playerView?.videoPlayer)
                 playerView?.playerLayer?.videoGravity = .resizeAspectFill
-                playerView?.playerLayer?.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_WIDTH / 16 * 9)
+                playerView?.playerLayer?.frame = CGRect(x: 0, y: 0, width: HY_SCREEN_WIDTH, height: HY_SCREEN_WIDTH / 16 * 9)
                 playerView?.videoView.layer.addSublayer((playerView?.playerLayer!)!)
             } else {
                 // 替换播放资源
@@ -240,7 +240,7 @@ class HYAudiovisualCommonManager: NSObject {
                         
                         // 已缓存则读满进度
                         if self.videoCacher.cacheList.contains(cache.identifier) {
-                            self.playerView?.controlPanel.cacheView.frame = CGRect(x: 48, y: 20, width: SCREEN_WIDTH - 176, height: 1)
+                            self.playerView?.controlPanel.cacheView.frame = CGRect(x: 48, y: 20, width: HY_SCREEN_WIDTH - 176, height: 1)
                         }
                     }
                     

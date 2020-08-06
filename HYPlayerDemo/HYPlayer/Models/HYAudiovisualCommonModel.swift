@@ -50,9 +50,9 @@ enum HYAudiovisualStatus {
     var controlPlayImg: UIImage? {
         switch self {
         case .playing:
-            return UIImage(named: "hy_video_ic_pause", in: SOURCE_BUNDLE, compatibleWith: nil)
+            return UIImage(named: "hy_video_ic_pause", in: HY_SOURCE_BUNDLE, compatibleWith: nil)
         case .pause:
-            return UIImage(named: "hy_video_ic_play", in: SOURCE_BUNDLE, compatibleWith: nil)
+            return UIImage(named: "hy_video_ic_play", in: HY_SOURCE_BUNDLE, compatibleWith: nil)
         default:
             return nil
         }
