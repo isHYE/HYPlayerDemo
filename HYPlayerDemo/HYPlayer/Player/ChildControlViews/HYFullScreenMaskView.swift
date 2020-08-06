@@ -147,7 +147,7 @@ class HYFullScreenMaskView: UIView {
     
     /** 创建更多功能面板*/
     private func createMoreFunctionView() {
-        moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT, y: 64, width: 100, height: HY_SCREEN_WIDTH - 104)
+        moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT, y: 64, width: 100, height: HY_SCREEN_WIDTH - (HY_IS_IPHONEX ? 119 : 104))
         addSubview(moreFunctionView)
         
         let speedLab = UILabel()
@@ -174,14 +174,14 @@ class HYFullScreenMaskView: UIView {
     /** 展示更多功能面板*/
     func showMoreFunctionView() {
         UIView.animate(withDuration: 0.2) {
-            self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT - self.moreFunctionWidth, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - 104)
+            self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT - self.moreFunctionWidth, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - (HY_IS_IPHONEX ? 119 : 104))
         }
     }
     
     /** 隐藏更多功能面板*/
     func hidMoreFunctionView() {
         UIView.animate(withDuration: 0.2) {
-            self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - 104)
+            self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - (HY_IS_IPHONEX ? 119 : 104))
         }
     }
     

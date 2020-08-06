@@ -10,13 +10,6 @@ import UIKit
 import SnapKit
 import AVFoundation
 
-/// 资源文件
-let HY_SOURCE_BUNDLE = Bundle.init(path: Bundle.main.path(forResource: "HYPlayer", ofType: "bundle")! + "/Icons")
-/// 屏幕宽度
-let HY_SCREEN_WIDTH = UIScreen.main.bounds.size.width
-/// 屏幕高度
-let HY_SCREEN_HEIGHT = UIScreen.main.bounds.size.height
-
 class HYPlayerCommonView: UIView {
     
     /// 播放器回调
@@ -66,12 +59,10 @@ class HYPlayerCommonView: UIView {
         self.init()
         
         fatherView = baseView
-        
         manager = HYAudiovisualCommonManager(self)
         speedyManager = HYAudiovisualSpeedyManager(self)
         
         createBaseView()
-        
         addObserver()
         
         // 开启屏幕常亮
@@ -147,8 +138,7 @@ class HYPlayerCommonView: UIView {
         controlPanel.slider.addTarget(self, action: #selector(sliderDraging(_:)), for: .valueChanged)
         addSubview(controlPanel)
         controlPanel.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview()
-            make.right.left.equalToSuperview()
+            make.bottom.leading.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
     }
@@ -192,7 +182,6 @@ class HYPlayerCommonView: UIView {
     }
     
     deinit {
-        
         NotificationCenter.default.removeObserver(self)
         print("HYPlayerCommonView Deinit")
     }
@@ -260,6 +249,11 @@ extension HYPlayerCommonView {
         manager?.isFullScreen = true
         fullMaskView?.isHidden = false
         controlPanel?.screenButton.setImage(UIImage(named: "hy_video_ic_fullscreen", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        controlPanel.snp.remakeConstraints { (make) in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
+            make.bottom.equalTo(HY_IS_IPHONEX ? -15 : 0)
+        }
         
         removeFromSuperview()
         UIApplication.shared.windows.first?.addSubview(self)
@@ -287,6 +281,10 @@ extension HYPlayerCommonView {
         bringSubviewToFront(controlPanel)
         controlPanel.alpha = 1
         controlPanel?.screenButton.setImage(UIImage(named: "hy_video_ic_normalscreen", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        controlPanel.snp.remakeConstraints { (make) in
+            make.bottom.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
+        }
         
         removeFromSuperview()
         fatherView?.addSubview(self)
@@ -322,13 +320,6 @@ extension HYPlayerCommonView {
         if fullMaskView?.lockBtn.isSelected == false {
             speedyManager?.endDrag()
         }
-    }
-    
-    /** 滑动取消*/
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if fullMaskView?.lockBtn.isSelected == false {
-//            playerPlay()
-//        }
     }
 }
 
@@ -367,15 +358,10 @@ extension HYPlayerCommonView {
     
     /** 播放｜暂停按钮被点击*/
     @objc private func playButtonDidClicked() {
-        switch manager?.playerStatus {
-        case .playing:
+        if manager?.playerStatus == .playing {
             manager?.playerStatus = .pause
-            break
-        case .pause:
+        } else if manager?.playerStatus == .pause {
             manager?.playerStatus = .playing
-            break
-        default:
-            break
         }
     }
     
@@ -471,24 +457,23 @@ extension HYPlayerCommonView: HYFullScreenMaskViewDelegate {
 extension HYPlayerCommonView: HYMediaCacherDelegate {
     /** 缓存进度更新*/
     func cacher<LocationType>(_ cacher: HYMediaCacher<LocationType>, cacheProgress progress: Float, of cache: HYMediaCacheManager) where LocationType : HYMediaCacheLocation {
-        print("缓存进度更新：\(progress)")
-        
+        delegate?.inCaching(progress: progress)
         controlPanel.cacheView.frame = CGRect(x: 48, y: 20, width: (HY_SCREEN_WIDTH - 176) * CGFloat(progress), height: 1)
     }
     
     /** 缓存开始*/
     func cacher<LocationType>(_ cacher: HYMediaCacher<LocationType>, didStartCacheOf cache: HYMediaCacheManager) where LocationType : HYMediaCacheLocation {
-        print("缓存开始")
+        delegate?.startCache()
     }
     
     /** 缓存完成*/
     func cacher<LocationType>(_ cacher: HYMediaCacher<LocationType>, didFinishCacheOf cache: HYMediaCacheManager) where LocationType : HYMediaCacheLocation {
-        print("缓存完成")
+        delegate?.completeCache()
     }
     
     /** 缓存失败*/
     func cacher<LocationType>(_ cacher: HYMediaCacher<LocationType>, didFailToCache cache: HYMediaCacheManager) where LocationType : HYMediaCacheLocation {
-        print("缓存失败")
+        delegate?.faildCache()
     }
     
 }

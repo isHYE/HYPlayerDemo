@@ -25,6 +25,18 @@ protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
     /** 结束播放*/
     func stopPlayer()
     
+    /** 缓存开始*/
+    func startCache()
+    
+    /** 缓存进行中*/
+    func inCaching(progress: Float)
+    
+    /** 缓存完成*/
+    func completeCache()
+    
+    /** 缓存失败*/
+    func faildCache()
+    
 }
 
 extension HYPlayerCommonViewDelegate {
@@ -33,4 +45,8 @@ extension HYPlayerCommonViewDelegate {
     func startPlayer(){}
     func pausePlayer(){}
     func stopPlayer(){}
+    func startCache(){}
+    func inCaching(progress: Float){}
+    func completeCache(){}
+    func faildCache(){}
 }

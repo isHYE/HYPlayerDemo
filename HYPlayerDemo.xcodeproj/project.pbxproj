@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F5E6C1C24DC03C100DEE555 /* HYPlayerConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5E6C1B24DC03C100DEE555 /* HYPlayerConstant.swift */; };
 		7F72714324D7A9460064587A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72714224D7A9460064587A /* AppDelegate.swift */; };
 		7F72714524D7A9460064587A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72714424D7A9460064587A /* SceneDelegate.swift */; };
 		7F72714724D7A9460064587A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72714624D7A9460064587A /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 		0E52EF8F02AC7DE2298DEF60 /* Pods-HYPlayerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYPlayerDemo.release.xcconfig"; path = "Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		2EF199AEF2B1431C396C59B9 /* Pods-HYPlayerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYPlayerDemo.debug.xcconfig"; path = "Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		312CD825D97236A5AE22FB3C /* Pods_HYPlayerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYPlayerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F5E6C1B24DC03C100DEE555 /* HYPlayerConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYPlayerConstant.swift; sourceTree = "<group>"; };
 		7F72713F24D7A9460064587A /* HYPlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HYPlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F72714224D7A9460064587A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F72714424D7A9460064587A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				7F72716724D7A9B00064587A /* HYPlayerCommonConfig.swift */,
 				7F72716824D7A9B00064587A /* HYAudiovisualCommonModel.swift */,
+				7F5E6C1B24DC03C100DEE555 /* HYPlayerConstant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				7F72714524D7A9460064587A /* SceneDelegate.swift in Sources */,
 				7F72718B24D7A9B00064587A /* HYFullScreenMaskView.swift in Sources */,
 				7F72718124D7A9B00064587A /* HYPlayerCommonConfig.swift in Sources */,
+				7F5E6C1C24DC03C100DEE555 /* HYPlayerConstant.swift in Sources */,
 				7F72717A24D7A9B00064587A /* HYMediaCacheManager.swift in Sources */,
 				7F72717F24D7A9B00064587A /* HYMediaCacheLocation.swift in Sources */,
 			);

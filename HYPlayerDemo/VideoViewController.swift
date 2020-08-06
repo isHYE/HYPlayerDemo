@@ -65,7 +65,6 @@ class VideoViewController: UIViewController {
         
         videoView = HYPlayerCommonView(playView)
         videoView?.delegate = self
-//        videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
         videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "视频测试", videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4", needCache: true, placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")))
         
     }
@@ -76,7 +75,7 @@ class VideoViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    /** 下载*/
+    /** 切换为音频播放*/
     @objc private func changeToAudioPressed() {
         videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
     }
@@ -106,6 +105,26 @@ extension VideoViewController: HYPlayerCommonViewDelegate {
     /** 结束播放*/
     func stopPlayer() {
         print("结束播放")
+    }
+    
+    /** 缓存开始*/
+    func startCache() {
+        print("缓存开始")
+    }
+    
+    /** 缓存进行中*/
+    func inCaching(progress: Float) {
+        print("缓存进度更新：\(progress)")
+    }
+    
+    /** 缓存完成*/
+    func completeCache() {
+        print("缓存完成")
+    }
+    
+    /** 缓存失败*/
+    func faildCache() {
+        print("缓存失败")
     }
 }
 
