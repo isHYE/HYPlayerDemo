@@ -10,9 +10,9 @@
 
 # 调用方法：
 let videoView = HYPlayerCommonView(播放器父视图)
-videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "标题", videoUrl: "视频地址", placeHoldImg: 封面图))
+videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "标题", videoUrl: "视频地址"))
 
-在contriller的viewWillDisappear中调用 videoView.dealToDisappear()以销毁播放器
+在controller的viewWillDisappear中调用 videoView.dealToDisappear()以销毁播放器
 
 # 播放器配置(HYPlayerCommonConfig)：
 - title: 播放音视频标题（全屏时显示），可不传
