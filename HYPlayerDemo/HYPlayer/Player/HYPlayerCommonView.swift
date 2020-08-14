@@ -95,6 +95,7 @@ class HYPlayerCommonView: UIView {
         videoViewMoreTap.numberOfTapsRequired = 2
         videoView.addGestureRecognizer(videoViewMoreTap)
         videoView.backgroundColor = UIColor.black
+        videoView.clipsToBounds = true
         addSubview(videoView)
         videoView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()

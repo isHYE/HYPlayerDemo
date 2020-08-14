@@ -288,13 +288,10 @@ class HYAudiovisualCommonManager: NSObject {
     func getVideoFrame() -> CGRect {
         if let size = videoSize {
             // 是否为竖屏视频
-            if !isFullScreen {
-                isVerticalScreen = size.height / size.width > (UIScreen.main.bounds.size.width / 16 * 9) / UIScreen.main.bounds.size.width
-            }
+            isVerticalScreen = size.height > size.width
             
-            
-            let isVertical = size.height / size.width > (isFullScreen ? UIScreen.main.bounds.size.height : (UIScreen.main.bounds.size.width / 16 * 9)) / UIScreen.main.bounds.size.width
-            
+            let isVertical = isFullScreen ? size.height / size.width > UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width : isVerticalScreen
+
             if isVertical {
                 // 竖播视频
                 if isFullScreen {
