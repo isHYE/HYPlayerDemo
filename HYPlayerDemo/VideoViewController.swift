@@ -69,6 +69,7 @@ class VideoViewController: UIViewController {
         
     }
     
+    
 
     /** 返回*/
     @objc private func returnBtnPressed() {
@@ -79,6 +80,21 @@ class VideoViewController: UIViewController {
     @objc private func changeToAudioPressed() {
         videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
     }
+    
+//    //  是否支持自动转屏
+//    override var shouldAutorotate: Bool {
+//        return true
+//    }
+//
+//    // 支持哪些转屏方向
+//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        return .all
+//    }
+//
+//    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+//        return .landscapeLeft
+//    }
+    
 }
 
 extension VideoViewController: HYPlayerCommonViewDelegate {

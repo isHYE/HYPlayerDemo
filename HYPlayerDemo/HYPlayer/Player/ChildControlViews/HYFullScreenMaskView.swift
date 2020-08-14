@@ -13,6 +13,8 @@ protocol HYFullScreenMaskViewDelegate: NSObjectProtocol {
     /** 更改播放器播放速度*/
     func changePlayerRate(rate: Float)
     
+    /** 更改播放器画面大小*/
+    func changePlayerScreen(tofull: Bool)
 }
 
 class HYFullScreenMaskView: UIView {
@@ -22,8 +24,11 @@ class HYFullScreenMaskView: UIView {
     var moreFunctionWidth: CGFloat = 300
     /// 当前播放速度
     var currentSpeed: Float = 1
+    /// 当前画面状态 0:铺满 1:自适应
+    var currentscreenStatus: Int = 1
     /// 倍速列表
     private let speedArray: [Float] = [0.75, 1.0, 1.5, 2.0]
+    
     
     /// 退出全屏
     var backBtn: HYResponseExpandButtton = {
@@ -67,8 +72,30 @@ class HYFullScreenMaskView: UIView {
     /// 更多功能面板
     var moreFunctionView: UIView = {
         let view = UIView()
+        // tag -> 0:为收起状态 1:为展开状态
+        view.tag = 0
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         return view
+    }()
+    
+    /** 画面铺满*/
+    private var screenSpreadBtn: UIButton = {
+        let btn = UIButton()
+        btn.tag = 0
+        btn.setTitle("铺满", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        btn.setTitleColor(.white, for: .normal)
+        return btn
+    }()
+    
+    /** 画面自适应*/
+    private var screenFitBtn: UIButton = {
+        let btn = UIButton()
+        btn.tag = 1
+        btn.setTitle("自适应", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        btn.setTitleColor(.white, for: .normal)
+        return btn
     }()
     
     /// 倍速列表
@@ -116,7 +143,7 @@ class HYFullScreenMaskView: UIView {
         
         naviView.addSubview(backBtn)
         backBtn.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview()
             make.left.equalToSuperview().offset(15)
             make.height.width.equalTo(48)
         }
@@ -169,22 +196,68 @@ class HYFullScreenMaskView: UIView {
             make.height.equalTo(30)
             make.trailing.equalToSuperview()
         }
+        
+        let screenLab = UILabel()
+        screenLab.text = "画面："
+        screenLab.textColor = UIColor.white
+        screenLab.font = UIFont.boldSystemFont(ofSize: 15)
+        moreFunctionView.addSubview(screenLab)
+        screenLab.snp.makeConstraints { (make) in
+            make.top.equalTo(speedLab.snp.bottom).offset(10)
+            make.leading.equalTo(14)
+            make.height.equalTo(30)
+        }
+        
+        screenSpreadBtn.addTarget(self, action: #selector(changePlayerScreen(_:)), for: .touchUpInside)
+        moreFunctionView.addSubview(screenSpreadBtn)
+        screenSpreadBtn.snp.makeConstraints { (make) in
+            make.centerY.equalTo(screenLab)
+            make.leading.equalTo(screenLab.snp.trailing).offset(10)
+        }
+        
+        screenFitBtn.addTarget(self, action: #selector(changePlayerScreen(_:)), for: .touchUpInside)
+        moreFunctionView.addSubview(screenFitBtn)
+        screenFitBtn.snp.makeConstraints { (make) in
+            make.centerY.equalTo(screenLab)
+            make.leading.equalTo(screenSpreadBtn.snp.trailing).offset(10)
+        }
+        
     }
     
     /** 展示更多功能面板*/
-    func showMoreFunctionView() {
+    func showMoreFunctionView(isVerticalScreen: Bool) {
+        moreFunctionView.tag = 1
+        screenSpreadBtn.setTitleColor(currentscreenStatus == 0 ? .red : .white, for: .normal)
+        screenFitBtn.setTitleColor(currentscreenStatus == 1 ? .red : .white, for: .normal)
+        
         UIView.animate(withDuration: 0.2) {
-            self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT - self.moreFunctionWidth, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - (HY_IS_IPHONEX ? 119 : 104))
+            if isVerticalScreen {
+                self.moreFunctionView.frame = CGRect(x: HY_SCREEN_WIDTH - self.moreFunctionWidth, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_HEIGHT - (HY_IS_IPHONEX ? 119 : 104))
+            } else {
+                self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT - self.moreFunctionWidth, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - (HY_IS_IPHONEX ? 119 : 104))
+            }
         }
     }
     
     /** 隐藏更多功能面板*/
     func hidMoreFunctionView() {
+        moreFunctionView.tag = 0
         UIView.animate(withDuration: 0.2) {
             self.moreFunctionView.frame = CGRect(x: HY_SCREEN_HEIGHT, y: 64, width: self.moreFunctionWidth, height: HY_SCREEN_WIDTH - (HY_IS_IPHONEX ? 119 : 104))
         }
     }
     
+    /** 更改画面状态*/
+    @objc private func changePlayerScreen(_ btn: UIButton) {
+        if currentscreenStatus != btn.tag {
+            currentscreenStatus = btn.tag
+            
+            screenSpreadBtn.setTitleColor(currentscreenStatus == 0 ? .red : .white, for: .normal)
+            screenFitBtn.setTitleColor(currentscreenStatus == 1 ? .red : .white, for: .normal)
+            
+            delegate?.changePlayerScreen(tofull: currentscreenStatus == 0)
+        }
+    }
     
     /** 更换播放器速度*/
     @objc private func changePlayerSpeed(_ btn: UIButton) {

@@ -40,6 +40,12 @@ class HYPlayerCommonView: UIView {
     /// 快捷操作提醒
     var speedyRemindView: HYSpeedyRemindView?
     
+    //MARK: 播放器相关
+    /// 播放器
+    var videoPlayer: AVPlayer?
+    /// 播放器layer
+    var playerLayer: AVPlayerLayer?
+    
     //MARK: Private Config
     /// 普通事件管理
     private var manager: HYAudiovisualCommonManager?
@@ -47,13 +53,6 @@ class HYPlayerCommonView: UIView {
     private var speedyManager: HYAudiovisualSpeedyManager?
     /// 播放进度计时器
     private var playTimer: Timer?
-    
-    //MARK: 播放器相关
-    /// 播放器
-    var videoPlayer: AVPlayer?
-    /// 播放器layer
-    var playerLayer: AVPlayerLayer?
-    
     
     convenience init(_ baseView: UIView) {
         self.init()
@@ -95,7 +94,7 @@ class HYPlayerCommonView: UIView {
         let videoViewMoreTap = UITapGestureRecognizer.init(target:self, action: #selector(playButtonDidClicked))
         videoViewMoreTap.numberOfTapsRequired = 2
         videoView.addGestureRecognizer(videoViewMoreTap)
-        videoView.backgroundColor = .clear
+        videoView.backgroundColor = UIColor.black
         addSubview(videoView)
         videoView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -199,7 +198,14 @@ extension HYPlayerCommonView {
     /** 继续播放*/
     func playerPlay() {
         manager?.playerStatus = .playing
-        
+        playTimer?.invalidate()
+        playTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updatePanel(sender:)), userInfo: nil, repeats: true)
+    }
+    
+    /** 重播*/
+    @objc func replayItem() {
+        manager?.replayPlayerItem()
+        playTimer?.invalidate()
         playTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updatePanel(sender:)), userInfo: nil, repeats: true)
     }
     
@@ -243,10 +249,19 @@ extension HYPlayerCommonView {
     private func dealForFullScreenPlayer()  {
         
         backgroundColor = .black
-        // 防止手动先把设备置为横屏,导致下面的语句失效.
-        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
         manager?.isFullScreen = true
+        
+        if manager?.isVerticalScreen == true {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        } else {
+            // 防止手动先把设备置为横屏,导致下面的语句失效.
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+            UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+        }
+        
+        playerLayer?.frame = manager?.getVideoFrame() ?? CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        
+        
         fullMaskView?.isHidden = false
         controlPanel?.screenButton.setImage(UIImage(named: "hy_video_ic_fullscreen", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
         controlPanel.snp.remakeConstraints { (make) in
@@ -260,9 +275,6 @@ extension HYPlayerCommonView {
         snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        
-        playerLayer?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-        
         
         bringSubviewToFront(fullMaskView!)
         bringSubviewToFront(controlPanel)
@@ -292,7 +304,7 @@ extension HYPlayerCommonView {
             make.edges.equalToSuperview()
         }
         
-        playerLayer?.frame = CGRect(x: 0, y: 0, width: HY_SCREEN_WIDTH, height: HY_SCREEN_WIDTH / 16 * 9)
+        playerLayer?.frame = manager?.getVideoFrame() ?? CGRect(x: 0, y: 0, width: HY_SCREEN_WIDTH, height: HY_SCREEN_WIDTH / 16 * 9)
         
     }
 }
@@ -341,7 +353,7 @@ extension HYPlayerCommonView {
     
     /** 播放器屏幕被点击 -> 呼出控制面板*/
     @objc func playerViewDidTapped() {
-        if fullMaskView?.moreFunctionView.frame.origin.x == HY_SCREEN_HEIGHT - (fullMaskView?.moreFunctionWidth ?? 0) {
+        if fullMaskView?.moreFunctionView.tag == 1 {
             // 收起更多功能面板
             fullMaskView?.hidMoreFunctionView()
             manager?.hideControlPanel(sender: nil)
@@ -356,19 +368,11 @@ extension HYPlayerCommonView {
         }
     }
     
-    /** 播放｜暂停按钮被点击*/
-    @objc private func playButtonDidClicked() {
-        if manager?.playerStatus == .playing {
-            manager?.playerStatus = .pause
-        } else if manager?.playerStatus == .pause {
-            manager?.playerStatus = .playing
-        }
-    }
-    
     /** 全屏响应处理的方法（全屏状态回到小屏，小屏状态展开全屏）*/
     @objc private func screenButtonDidClicked() {
         if manager?.isFullScreen == false {
-            placeHoldImgView.isHidden = true
+            // 画面状态调为自适应
+            fullMaskView?.currentscreenStatus = 1
             dealForFullScreenPlayer()
         } else if manager?.isFullScreen == true {
             fullMaskView?.hidMoreFunctionView()
@@ -379,6 +383,15 @@ extension HYPlayerCommonView {
         
         if let isFullScreen = manager?.isFullScreen {
             delegate?.changeFullScreen(isFull: isFullScreen)
+        }
+    }
+    
+    /** 播放｜暂停按钮被点击*/
+    @objc private func playButtonDidClicked() {
+        if manager?.playerStatus == .playing {
+            manager?.playerStatus = .pause
+        } else if manager?.playerStatus == .pause {
+            manager?.playerStatus = .playing
         }
     }
     
@@ -401,8 +414,8 @@ extension HYPlayerCommonView {
     
     /** 全屏更多功能*/
     @objc private func fullScreenMoreClicked() {
-        if fullMaskView?.moreFunctionView.frame.origin.x == HY_SCREEN_HEIGHT {
-            fullMaskView?.showMoreFunctionView()
+        if fullMaskView?.moreFunctionView.tag == 0 {
+            fullMaskView?.showMoreFunctionView(isVerticalScreen: manager?.isVerticalScreen ?? false)
             manager?.hideTimer?.invalidate()
         } else {
             fullMaskView?.hidMoreFunctionView()
@@ -439,10 +452,6 @@ extension HYPlayerCommonView {
         print("视频播放完毕")
     }
     
-    /** 重播*/
-    @objc func replayItem() {
-        manager?.replayPlayerItem()
-    }
 }
 
 //MARK: 更多功能调整
@@ -450,6 +459,19 @@ extension HYPlayerCommonView: HYFullScreenMaskViewDelegate {
     /** 更改播放器播放速度*/
     func changePlayerRate(rate: Float) {
         videoPlayer?.rate = rate
+    }
+    
+    /** 更改播放器画面大小*/
+    func changePlayerScreen(tofull: Bool) {
+        if manager?.isFullScreen == true {
+            if tofull {
+                // 画面铺满
+                playerLayer?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+            } else {
+                // 画面自适应
+                playerLayer?.frame = manager?.getVideoFrame() ?? CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+            }
+        }
     }
 }
 

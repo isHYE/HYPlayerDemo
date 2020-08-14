@@ -19,6 +19,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HYAudiovisualCommonManager.playVideo(urlStr:config:):HYAudiovisualCommonManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "videoSize">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "HYAudiovisualCommonView.playerPlay():HYAudiovisualCommonView.swift">
          <PersistentStrings>
             <PersistentString

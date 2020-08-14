@@ -61,6 +61,13 @@ class HYAudiovisualCommonManager: NSObject {
                     }
                     
                     playerView?.isPlaying = true
+                    
+                    do {
+                        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+                    } catch let error {
+                        print(error)
+                    }
+                    
                     playerView?.videoPlayer?.play()
                     if let rate = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float {
                         playerView?.videoPlayer?.rate = rate
@@ -100,9 +107,13 @@ class HYAudiovisualCommonManager: NSObject {
     }
     
     /// 当前播放是否为视频播放
-    var isVideo: Bool!
+    var isVideo: Bool = false
+    /// 当前播放内容是否适合竖屏观看
+    var isVerticalScreen: Bool = false
     /// 当前播放器是否全屏
     var isFullScreen = false
+    /// 视频尺寸
+    var videoSize: CGSize?
     
     /// 是否第一次加载（非流量不自动播放）
     private var firstLoad = true
@@ -168,12 +179,6 @@ class HYAudiovisualCommonManager: NSObject {
         
         playerView?.videoPlayer?.seek(to: CMTime(seconds: 0, preferredTimescale: 1))
         playerStatus = .playing
-        
-        
-//        playerView?.videoPlayer?.play()
-//        if let rate = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float {
-//            playerView?.videoPlayer?.rate = rate
-//        }
     }
     
     /** 播放视频*/
@@ -187,7 +192,8 @@ class HYAudiovisualCommonManager: NSObject {
                 playerView?.videoPlayer = AVPlayer(playerItem: item)
                 playerView?.playerLayer = AVPlayerLayer(player: playerView?.videoPlayer)
                 playerView?.playerLayer?.videoGravity = .resizeAspectFill
-                playerView?.playerLayer?.frame = CGRect(x: 0, y: 0, width: HY_SCREEN_WIDTH, height: HY_SCREEN_WIDTH / 16 * 9)
+                playerView?.playerLayer?.frame = getVideoFrame()
+                
                 playerView?.videoView.layer.addSublayer((playerView?.playerLayer!)!)
             } else {
                 // 替换播放资源
@@ -235,6 +241,12 @@ class HYAudiovisualCommonManager: NSObject {
                 if let asset = cache.asset {
                     let item = AVPlayerItem(asset: asset)
                     
+                    for track in asset.tracks {
+                        if track.mediaType == .video {
+                            videoSize = track.naturalSize
+                        }
+                    }
+                    
                     DispatchQueue.main.async {
                         playVideo(item: item)
                         
@@ -249,17 +261,65 @@ class HYAudiovisualCommonManager: NSObject {
                 }
             }
         } else {
+            
             // 不缓存 -> 直接播放
-            var item: AVPlayerItem
+            let playerUrl: URL
             if let authenticationFunc = config.authenticationFunc {
-                item = AVPlayerItem(url: authenticationFunc(videoUrl!))
+                playerUrl = authenticationFunc(videoUrl!)
             } else {
-                item = AVPlayerItem(url: videoUrl!)
+                playerUrl = videoUrl!
+            }
+            
+            let item: AVPlayerItem = AVPlayerItem(url: playerUrl)
+            
+            let asset = AVURLAsset(url: playerUrl)
+            for track in asset.tracks {
+                if track.mediaType == .video {
+                    videoSize = track.naturalSize
+                }
             }
             
             playVideo(item: item)
         }
         
+    }
+    
+    /** 获取播放器画面尺寸*/
+    func getVideoFrame() -> CGRect {
+        if let size = videoSize {
+            // 是否为竖屏视频
+            if !isFullScreen {
+                isVerticalScreen = size.height / size.width > (UIScreen.main.bounds.size.width / 16 * 9) / UIScreen.main.bounds.size.width
+            }
+            
+            
+            let isVertical = size.height / size.width > (isFullScreen ? UIScreen.main.bounds.size.height : (UIScreen.main.bounds.size.width / 16 * 9)) / UIScreen.main.bounds.size.width
+            
+            if isVertical {
+                // 竖播视频
+                if isFullScreen {
+                    // 全屏
+                    let playerWidth = UIScreen.main.bounds.size.height / size.height * size.width
+                    return CGRect(x: (UIScreen.main.bounds.size.width - playerWidth) / 2, y: 0, width: playerWidth, height: UIScreen.main.bounds.size.height)
+                } else {
+                    // 小屏
+                    let playerWidth = (UIScreen.main.bounds.size.width / 16 * 9) / size.height * size.width
+                    return CGRect(x: (UIScreen.main.bounds.size.width - playerWidth) / 2, y: 0, width: playerWidth, height: UIScreen.main.bounds.size.width / 16 * 9)
+                }
+            } else {
+                // 横播视频
+                if isFullScreen {
+                    let playerHeight = UIScreen.main.bounds.size.width / size.width * size.height
+                    return CGRect(x: 0, y: (UIScreen.main.bounds.size.height - playerHeight) / 2, width: UIScreen.main.bounds.size.width, height: playerHeight)
+                } else {
+                    let playerHeight = UIScreen.main.bounds.size.width / size.width * size.height
+                    return CGRect(x: 0, y: (UIScreen.main.bounds.size.width / 16 * 9 - playerHeight) / 2, width: UIScreen.main.bounds.size.width, height: playerHeight)
+                }
+            }
+        }
+        
+        
+        return CGRect(x: 0, y: 0, width: HY_SCREEN_WIDTH, height: HY_SCREEN_WIDTH / 16 * 9)
     }
     
     /** 保存断点续播数据*/
@@ -299,6 +359,10 @@ extension HYAudiovisualCommonManager {
         let currentMM = Int(currentTime / 60)
         let currentSS = Int(currentTime.truncatingRemainder(dividingBy: 60))
         let string = String(format: "%.2i:%.2i/%.2i:%.2i", currentMM, currentSS, totalMM, totalSS)
+        
+        if currentSS > 0 {
+            playerView?.placeHoldImgView.isHidden = true
+        }
         
         // 时间显示修改
         playerView?.controlPanel.timeLabel.text = string
