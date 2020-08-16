@@ -17,7 +17,7 @@ class VideoViewController: UIViewController {
                                 videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4",
                                 needCache: true,
                                 placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")),
-           HYPlayerCommonConfig(title: "网络本地视频测试",
+           HYPlayerCommonConfig(title: "本地视频测试",
                                 videoUrl: Bundle.main.path(forResource: "testMovie", ofType: "mp4"),
                                 placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")),
            HYPlayerCommonConfig(title: "音频测试",
@@ -27,7 +27,7 @@ class VideoViewController: UIViewController {
                                 audioUrl: Bundle.main.path(forResource: "testSong", ofType: "mp3"),
                                 placeHoldImg: "radio_bg_video")]
     
-    /// 视频播放器
+    /// HYPlayer播放器
     private var videoView: HYPlayerCommonView?
     
     /// 播放列表
@@ -75,16 +75,16 @@ class VideoViewController: UIViewController {
             make.width.equalTo(64)
         }
         
-//        let cacheBtn = UIButton()
-//        cacheBtn.setTitle("缓存", for: .normal)
-//        cacheBtn.setTitleColor(.red, for: .normal)
-//        cacheBtn.addTarget(self, action: #selector(showCacheList), for: .touchUpInside)
-//        naviView.addSubview(cacheBtn)
-//        cacheBtn.snp.makeConstraints { (make) in
-//            make.trailing.bottom.equalToSuperview()
-//            make.height.equalTo(30)
-//            make.width.equalTo(64)
-//        }
+        //        let cacheBtn = UIButton()
+        //        cacheBtn.setTitle("缓存", for: .normal)
+        //        cacheBtn.setTitleColor(.red, for: .normal)
+        //        cacheBtn.addTarget(self, action: #selector(showCacheList), for: .touchUpInside)
+        //        naviView.addSubview(cacheBtn)
+        //        cacheBtn.snp.makeConstraints { (make) in
+        //            make.trailing.bottom.equalToSuperview()
+        //            make.height.equalTo(30)
+        //            make.width.equalTo(64)
+        //        }
         
         let playView = UIView()
         playView.backgroundColor = .white
@@ -95,10 +95,13 @@ class VideoViewController: UIViewController {
             make.height.equalTo(UIScreen.main.bounds.size.width / 16 * 9)
         }
         
-        
         videoView = HYPlayerCommonView(playView)
         videoView?.delegate = self
-        videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "视频测试", videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4", needCache: true, placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")))
+        videoView?.updateCurrentPlayer(playerConfig:
+            HYPlayerCommonConfig(title: "视频测试",
+                                 videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4",
+                                 needCache: true,
+                                 placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")))
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -112,8 +115,8 @@ class VideoViewController: UIViewController {
     
     /** 展示缓存列表*/
     @objc private func showCacheList() {
-//        let vc = PlayerCacheListController()
-//        present(vc, animated: true)
+        //        let vc = PlayerCacheListController()
+        //        present(vc, animated: true)
     }
     
     /** 返回*/
