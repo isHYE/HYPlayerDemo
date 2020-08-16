@@ -1,5 +1,5 @@
 # HYPlayerDemo
-音视频播放器
+本地｜网络 音视频播放器
 
 # 实现功能：
 - 屏幕滑动调节进度、亮度、音量
@@ -18,8 +18,8 @@ videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "标题
 
 # 播放器配置(HYPlayerCommonConfig)：
 - title: 播放音视频标题（全屏时显示），可不传
-- audioUrl: 播放音频地址
 - videoUrl: 播放视频地址（不传则播放音频）
+- audioUrl: 播放音频地址
 - needCache: 是否需要缓存（默认不开启）
 - playContinue: 是否断点续播（默认开启）
 - placeHoldImg: 封面图（可传本地图片String或网络图片URL）
