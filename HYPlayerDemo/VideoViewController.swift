@@ -11,14 +11,40 @@ import SnapKit
 
 class VideoViewController: UIViewController {
     
-
-    var videoView: HYPlayerCommonView?
-
+    /// 音视频播放列表
+    private var playerConfigArray: [HYPlayerCommonConfig]
+        = [HYPlayerCommonConfig(title: "网络视频测试",
+                                videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4",
+                                needCache: true,
+                                placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")),
+           HYPlayerCommonConfig(title: "网络本地视频测试",
+                                videoUrl: Bundle.main.path(forResource: "testMovie", ofType: "mp4"),
+                                placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")),
+           HYPlayerCommonConfig(title: "音频测试",
+                                audioUrl: "http://music.163.com/song/media/outer/url?id=447925558.mp3",
+                                placeHoldImg: "radio_bg_video"),
+           HYPlayerCommonConfig(title: "本地音频测试",
+                                audioUrl: Bundle.main.path(forResource: "testSong", ofType: "mp3"),
+                                placeHoldImg: "radio_bg_video")]
+    
+    /// 视频播放器
+    private var videoView: HYPlayerCommonView?
+    
+    /// 播放列表
+    private var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.register(PlayerListTableViewCell.self, forCellReuseIdentifier: "PlayerListTableViewCell")
+        
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = .white
+        tableView.bounces = true
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        view.backgroundColor = .white
         
         createUI()
     }
@@ -26,38 +52,45 @@ class VideoViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         videoView?.dealToDisappear()
     }
-
+    
     private func createUI() {
+        
+        let naviView = UIView()
+        naviView.backgroundColor = .white
+        view.addSubview(naviView)
+        naviView.snp.makeConstraints { (make) in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(HY_IS_IPHONEX ? 88 : 64)
+        }
+        
         
         let returnBtn = UIButton()
         returnBtn.setTitle("返回", for: .normal)
         returnBtn.setTitleColor(.red, for: .normal)
         returnBtn.addTarget(self, action: #selector(returnBtnPressed), for: .touchUpInside)
-        view.addSubview(returnBtn)
+        naviView.addSubview(returnBtn)
         returnBtn.snp.makeConstraints { (make) in
-            make.leading.equalToSuperview()
-            make.top.equalTo(388)
+            make.leading.bottom.equalToSuperview()
             make.height.equalTo(30)
-            make.width.equalTo(50)
+            make.width.equalTo(64)
         }
         
-        let audioBtn = UIButton()
-        audioBtn.setTitle("音频", for: .normal)
-        audioBtn.setTitleColor(.red, for: .normal)
-        audioBtn.addTarget(self, action: #selector(changeToAudioPressed), for: .touchUpInside)
-        view.addSubview(audioBtn)
-        audioBtn.snp.makeConstraints { (make) in
-            make.trailing.equalToSuperview()
-            make.top.equalTo(388)
-            make.height.equalTo(30)
-            make.width.equalTo(50)
-        }
+//        let cacheBtn = UIButton()
+//        cacheBtn.setTitle("缓存", for: .normal)
+//        cacheBtn.setTitleColor(.red, for: .normal)
+//        cacheBtn.addTarget(self, action: #selector(showCacheList), for: .touchUpInside)
+//        naviView.addSubview(cacheBtn)
+//        cacheBtn.snp.makeConstraints { (make) in
+//            make.trailing.bottom.equalToSuperview()
+//            make.height.equalTo(30)
+//            make.width.equalTo(64)
+//        }
         
         let playView = UIView()
         playView.backgroundColor = .white
         view.addSubview(playView)
         playView.snp.makeConstraints { (make) in
-            make.top.equalTo(100)
+            make.top.equalTo(naviView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.bounds.size.width / 16 * 9)
         }
@@ -67,36 +100,67 @@ class VideoViewController: UIViewController {
         videoView?.delegate = self
         videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "视频测试", videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4", needCache: true, placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")))
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(playView.snp.bottom)
+        }
+        
     }
     
+    /** 展示缓存列表*/
+    @objc private func showCacheList() {
+//        let vc = PlayerCacheListController()
+//        present(vc, animated: true)
+    }
     
-
     /** 返回*/
     @objc private func returnBtnPressed() {
         dismiss(animated: true)
     }
     
-    /** 切换为音频播放*/
-    @objc private func changeToAudioPressed() {
-        videoView?.updateCurrentPlayer(playerConfig: HYPlayerCommonConfig(title: "音频测试", audioUrl: "http://chinaapper.com/pthtest/pthtestmodel/teachermodel.mp3", placeHoldImg: "radio_bg_video"))
-    }
-    
-//    //  是否支持自动转屏
-//    override var shouldAutorotate: Bool {
-//        return true
-//    }
-//
-//    // 支持哪些转屏方向
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        return .all
-//    }
-//
-//    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-//        return .landscapeLeft
-//    }
+    //    //  是否支持自动转屏
+    //    override var shouldAutorotate: Bool {
+    //        return true
+    //    }
+    //
+    //    // 支持哪些转屏方向
+    //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    //        return .all
+    //    }
+    //
+    //    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+    //        return .landscapeLeft
+    //    }
     
 }
 
+//MARK: UITableViewDelegate, UITableViewDataSource
+extension VideoViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return playerConfigArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerListTableViewCell", for: indexPath) as! PlayerListTableViewCell
+        if playerConfigArray.count > indexPath.row {
+            let playerConfig = playerConfigArray[indexPath.row]
+            cell.titleLab.text = playerConfig.title
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if playerConfigArray.count > indexPath.row {
+            let playerConfig = playerConfigArray[indexPath.row]
+            videoView?.updateCurrentPlayer(playerConfig: playerConfig)
+        }
+    }
+}
+
+//MARK: HYPlayerCommonViewDelegate
 extension VideoViewController: HYPlayerCommonViewDelegate {
     /** 全屏状态改变*/
     func changeFullScreen(isFull: Bool) {

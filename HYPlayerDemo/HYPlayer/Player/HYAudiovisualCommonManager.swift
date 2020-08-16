@@ -228,10 +228,20 @@ class HYAudiovisualCommonManager: NSObject {
         
         currentPlayerUrl = urlStr
         
-        let videoUrl = URL(string: urlStr)
-        if config.needCache && !HYReach.isReachableViaWWAN() {
+        // 是否为网上资源
+        var isOnlineSource: Bool = true
+        // 播放地址
+        let playerUrl: URL
+        if urlStr.starts(with: "http") {
+            playerUrl = URL(string: urlStr)!
+        } else {
+            isOnlineSource = false
+            playerUrl = URL(fileURLWithPath: urlStr)
+        }
+        
+        if config.needCache && !HYReach.isReachableViaWWAN() && isOnlineSource {
             // 缓存的处理
-            let location = HYDefaultVideoCacheLocation(remoteURL: videoUrl!, mediaType: isVideo ? .video : .audio, authenticationFunc: config.authenticationFunc)
+            let location = HYDefaultVideoCacheLocation(remoteURL: playerUrl, mediaType: isVideo ? .video : .audio, authenticationFunc: config.authenticationFunc)
             let canCache = HYCacheStorage.available > Float(500 * 1024 * 1024)
             videoCacher.delegate = playerView
             
@@ -263,16 +273,17 @@ class HYAudiovisualCommonManager: NSObject {
         } else {
             
             // 不缓存 -> 直接播放
-            let playerUrl: URL
-            if let authenticationFunc = config.authenticationFunc {
-                playerUrl = authenticationFunc(videoUrl!)
+            let onlineUrl: URL
+            
+            if let authenticationFunc = config.authenticationFunc, isOnlineSource {
+                onlineUrl = authenticationFunc(playerUrl)
             } else {
-                playerUrl = videoUrl!
+                onlineUrl = playerUrl
             }
             
-            let item: AVPlayerItem = AVPlayerItem(url: playerUrl)
+            let item: AVPlayerItem = AVPlayerItem(url: onlineUrl)
             
-            let asset = AVURLAsset(url: playerUrl)
+            let asset = AVURLAsset(url: onlineUrl)
             for track in asset.tracks {
                 if track.mediaType == .video {
                     videoSize = track.naturalSize
@@ -281,8 +292,8 @@ class HYAudiovisualCommonManager: NSObject {
             
             playVideo(item: item)
         }
-        
     }
+    
     
     /** 获取播放器画面尺寸*/
     func getVideoFrame() -> CGRect {
@@ -291,7 +302,7 @@ class HYAudiovisualCommonManager: NSObject {
             isVerticalScreen = size.height > size.width
             
             let isVertical = isFullScreen ? size.height / size.width > UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width : isVerticalScreen
-
+            
             if isVertical {
                 // 竖播视频
                 if isFullScreen {

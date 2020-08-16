@@ -39,6 +39,11 @@
 		7F72718D24D7A9B00064587A /* HYAudiovisualSpeedyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717724D7A9B00064587A /* HYAudiovisualSpeedyManager.swift */; };
 		7F72719124D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72719024D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift */; };
 		7FAAC14124D8F6B000FB7202 /* HYResponseExpandButtton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAC14024D8F6B000FB7202 /* HYResponseExpandButtton.swift */; };
+		7FBC9BC224E8EC0900365675 /* PlayerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC124E8EC0900365675 /* PlayerListTableViewCell.swift */; };
+		7FBC9BC524E8F24700365675 /* testSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC424E8F24700365675 /* testSong.mp3 */; };
+		7FBC9BC824E8F4D600365675 /* PlayerCacheListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC724E8F4D600365675 /* PlayerCacheListController.swift */; };
+		7FBC9BCA24E8F66800365675 /* HYVideoCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC924E8F66800365675 /* HYVideoCacheManager.swift */; };
+		7FBC9BCC24E9050C00365675 /* testMovie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC9BCB24E9050C00365675 /* testMovie.mp4 */; };
 		CDD4286B67AF8D8C1FE376CD /* Pods_HYPlayerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312CD825D97236A5AE22FB3C /* Pods_HYPlayerDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +86,11 @@
 		7F72718E24D7AABC0064587A /* HYPlayerDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HYPlayerDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		7F72719024D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYMoreFunctionSpeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		7FAAC14024D8F6B000FB7202 /* HYResponseExpandButtton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYResponseExpandButtton.swift; sourceTree = "<group>"; };
+		7FBC9BC124E8EC0900365675 /* PlayerListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListTableViewCell.swift; sourceTree = "<group>"; };
+		7FBC9BC424E8F24700365675 /* testSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testSong.mp3; sourceTree = "<group>"; };
+		7FBC9BC724E8F4D600365675 /* PlayerCacheListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCacheListController.swift; sourceTree = "<group>"; };
+		7FBC9BC924E8F66800365675 /* HYVideoCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYVideoCacheManager.swift; sourceTree = "<group>"; };
+		7FBC9BCB24E9050C00365675 /* testMovie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testMovie.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,11 +126,14 @@
 		7F72714124D7A9460064587A /* HYPlayerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				7FBC9BC324E8F23E00365675 /* Source */,
 				7F72715824D7A9B00064587A /* HYPlayer */,
 				7F72714224D7A9460064587A /* AppDelegate.swift */,
 				7F72714424D7A9460064587A /* SceneDelegate.swift */,
 				7F72714624D7A9460064587A /* ViewController.swift */,
 				7F72715624D7A99B0064587A /* VideoViewController.swift */,
+				7FBC9BC124E8EC0900365675 /* PlayerListTableViewCell.swift */,
+				7FBC9BC724E8F4D600365675 /* PlayerCacheListController.swift */,
 				7F72714824D7A9460064587A /* Main.storyboard */,
 				7F72714B24D7A9490064587A /* Assets.xcassets */,
 				7F72714D24D7A9490064587A /* LaunchScreen.storyboard */,
@@ -156,6 +169,7 @@
 		7F72715B24D7A9B00064587A /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				7FBC9BC924E8F66800365675 /* HYVideoCacheManager.swift */,
 				7F72715C24D7A9B00064587A /* HYDefaultVideoCacheLocation.swift */,
 				7F72715D24D7A9B00064587A /* HYMediaCacheManager.swift */,
 				7F72715E24D7A9B00064587A /* HYMediaCryptor.swift */,
@@ -242,6 +256,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7FBC9BC324E8F23E00365675 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7FBC9BCB24E9050C00365675 /* testMovie.mp4 */,
+				7FBC9BC424E8F24700365675 /* testSong.mp3 */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		B717FC0DA78098B499F3D1A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +345,8 @@
 				7F72714F24D7A9490064587A /* LaunchScreen.storyboard in Resources */,
 				7F72718024D7A9B00064587A /* HYPlayer.bundle in Resources */,
 				7F72714C24D7A9490064587A /* Assets.xcassets in Resources */,
+				7FBC9BC524E8F24700365675 /* testSong.mp3 in Resources */,
+				7FBC9BCC24E9050C00365675 /* testMovie.mp4 in Resources */,
 				7F72714A24D7A9460064587A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,7 +403,9 @@
 				7FAAC14124D8F6B000FB7202 /* HYResponseExpandButtton.swift in Sources */,
 				7F72718D24D7A9B00064587A /* HYAudiovisualSpeedyManager.swift in Sources */,
 				7F72718924D7A9B00064587A /* HYEndPlayView.swift in Sources */,
+				7FBC9BC224E8EC0900365675 /* PlayerListTableViewCell.swift in Sources */,
 				7F72718824D7A9B00064587A /* HYSpeedyRemindView.swift in Sources */,
+				7FBC9BCA24E8F66800365675 /* HYVideoCacheManager.swift in Sources */,
 				7F72718A24D7A9B00064587A /* HYControlPanelView.swift in Sources */,
 				7F72719124D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift in Sources */,
 				7F72717824D7A9B00064587A /* String+HYEncryption.swift in Sources */,
@@ -387,6 +414,7 @@
 				7F72717D24D7A9B00064587A /* HYMediaCacheDelegate.swift in Sources */,
 				7F72718724D7A9B00064587A /* HYAudiovisualCommonManager.swift in Sources */,
 				7F72714724D7A9460064587A /* ViewController.swift in Sources */,
+				7FBC9BC824E8F4D600365675 /* PlayerCacheListController.swift in Sources */,
 				7F72717C24D7A9B00064587A /* HYMediaCacher.swift in Sources */,
 				7F72718424D7A9B00064587A /* HYFileDirectory.swift in Sources */,
 				7F72718624D7A9B00064587A /* HYPlayerCommonView.swift in Sources */,

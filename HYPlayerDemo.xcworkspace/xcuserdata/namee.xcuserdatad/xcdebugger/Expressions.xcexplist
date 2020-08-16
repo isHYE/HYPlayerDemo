@@ -49,6 +49,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HYPlayerCommonView.updateCurrentPlayer(playerConfig:):HYPlayerCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "manager?.playerConfig">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "HYPlayerCommonView.avplayerItemDidPlayToEndTime(_:):HYPlayerCommonView.swift">
          <PersistentStrings>
             <PersistentString

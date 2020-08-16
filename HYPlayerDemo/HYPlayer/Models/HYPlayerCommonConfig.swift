@@ -44,8 +44,8 @@ struct HYPlayerCommonConfig {
     /// 初始化播放器配置
     /// - Parameters:
     ///   - title: 播放音视频标题（全屏时显示），可不传
-    ///   - audioUrl: 播放音频地址
     ///   - videoUrl: 播放视频地址（不传则播放音频）
+    ///   - audioUrl: 播放音频地址
     ///   - needCache: 是否需要缓存（默认不开启）
     ///   - playContinue: 是否断点续播（默认开启）
     ///   - placeHoldImg: 封面图（可传本地图片String或网络图片URL）
@@ -53,8 +53,8 @@ struct HYPlayerCommonConfig {
     ///   - customAudioView: 自定义音频播放界面（可不传）
     ///   - authenticationFunc: 播放地址鉴权函数(可不传)
     init<T>(title: String = "",
-            audioUrl: String? = nil,
             videoUrl: String? = nil,
+            audioUrl: String? = nil,
             needCache: Bool = false,
             playContinue: Bool = true,
             placeHoldImg: T? = nil,
