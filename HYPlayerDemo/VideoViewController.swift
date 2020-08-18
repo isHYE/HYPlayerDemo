@@ -124,19 +124,19 @@ class VideoViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    //    //  是否支持自动转屏
-    //    override var shouldAutorotate: Bool {
-    //        return true
-    //    }
-    //
-    //    // 支持哪些转屏方向
-    //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-    //        return .all
-    //    }
-    //
-    //    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-    //        return .landscapeLeft
-    //    }
+//        //  是否支持自动转屏
+//        override var shouldAutorotate: Bool {
+//            return true
+//        }
+//
+//        // 支持哪些转屏方向
+//        override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//            return .all
+//        }
+//    
+//        override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+//            return .landscapeLeft
+//        }
     
 }
 

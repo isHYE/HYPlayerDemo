@@ -257,13 +257,9 @@ extension HYPlayerCommonView {
     private func dealForFullScreenPlayer()  {
         
         backgroundColor = .black
-        manager?.isFullScreen = true
-        
         if manager?.isVerticalScreen == true {
             UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         } else {
-            // 防止手动先把设备置为横屏,导致下面的语句失效.
-            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
         }
         
@@ -296,7 +292,6 @@ extension HYPlayerCommonView {
         
         fullMaskView?.isHidden = true
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-        manager?.isFullScreen = false
         controlPanel.isHidden = false
         bringSubviewToFront(controlPanel)
         controlPanel.alpha = 1
@@ -378,20 +373,24 @@ extension HYPlayerCommonView {
     
     /** 全屏响应处理的方法（全屏状态回到小屏，小屏状态展开全屏）*/
     @objc private func screenButtonDidClicked() {
-        if manager?.isFullScreen == false {
+        
+        manager?.isFullScreen = !(manager?.isFullScreen ?? false)
+        
+        if let isFullScreen = manager?.isFullScreen {
+            delegate?.changeFullScreen(isFull: isFullScreen)
+        }
+        
+        if manager?.isFullScreen == true {
             // 画面状态调为自适应
             fullMaskView?.currentscreenStatus = 1
             dealForFullScreenPlayer()
-        } else if manager?.isFullScreen == true {
+        } else if manager?.isFullScreen == false {
             fullMaskView?.hidMoreFunctionView()
             dealForNormalScreenPlayer()
         }
         
         manager?.resetHideTimer()
         
-        if let isFullScreen = manager?.isFullScreen {
-            delegate?.changeFullScreen(isFull: isFullScreen)
-        }
     }
     
     /** 播放｜暂停按钮被点击*/
