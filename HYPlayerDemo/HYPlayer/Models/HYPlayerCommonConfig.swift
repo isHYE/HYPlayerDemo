@@ -66,6 +66,7 @@ struct HYPlayerCommonConfig {
         self.audioUrl = audioUrl
         self.videoUrl = videoUrl
         self.needCache = needCache
+        self.playContinue = playContinue
         self.customEndView = customEndView
         self.customAudioView = customAudioView
         self.authenticationFunc = authenticationFunc
