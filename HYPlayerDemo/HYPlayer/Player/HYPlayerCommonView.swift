@@ -79,15 +79,6 @@ class HYPlayerCommonView: UIView {
             make.edges.equalToSuperview()
         }
         
-        placeHoldImgView = UIImageView()
-        placeHoldImgView.isHidden = true
-        placeHoldImgView.contentMode = .scaleAspectFill
-        placeHoldImgView.clipsToBounds = true
-        addSubview(placeHoldImgView)
-        placeHoldImgView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-        
         videoView = UIView()
         let videoViewTap = UITapGestureRecognizer.init(target: self, action: #selector(playerViewDidTapped))
         videoView.addGestureRecognizer(videoViewTap)
@@ -125,6 +116,15 @@ class HYPlayerCommonView: UIView {
         createAllScreenNavigationBar()
         createControlPanel()
         createEndPlayView()
+        
+        placeHoldImgView = UIImageView()
+        placeHoldImgView.isHidden = true
+        placeHoldImgView.contentMode = .scaleAspectFill
+        placeHoldImgView.clipsToBounds = true
+        addSubview(placeHoldImgView)
+        placeHoldImgView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     /** 配置控制面板*/
