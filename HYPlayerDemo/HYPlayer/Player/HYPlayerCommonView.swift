@@ -113,10 +113,6 @@ class HYPlayerCommonView: UIView {
             make.height.equalTo(50)
         })
         
-        createAllScreenNavigationBar()
-        createControlPanel()
-        createEndPlayView()
-        
         placeHoldImgView = UIImageView()
         placeHoldImgView.isHidden = true
         placeHoldImgView.contentMode = .scaleAspectFill
@@ -125,6 +121,11 @@ class HYPlayerCommonView: UIView {
         placeHoldImgView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        
+        createAllScreenNavigationBar()
+        createControlPanel()
+        createEndPlayView()
+        
     }
     
     /** 配置控制面板*/
