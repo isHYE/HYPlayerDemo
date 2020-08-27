@@ -9,6 +9,7 @@
 - 在wifi条件下自动缓存
 - 断点续播功能
 - 自定义播放结束页面及音频播放界面
+- 修改自定义结束页面
 
 # 调用方法：
 let videoView = HYPlayerCommonView(播放器父视图)

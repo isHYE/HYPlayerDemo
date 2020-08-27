@@ -226,6 +226,12 @@ extension HYPlayerCommonView {
         audioPlayView?.isHidden = manager?.isVideo == true
     }
     
+    /// 更新播放结束页面
+    /// - Parameter endView: 自定义结束页面
+    func updateEndView(endView: UIView) {
+        manager?.playerConfig?.customEndView = endView
+    }
+    
     /** 修改播放器进度*/
     func changePlayerProgress(progress: Float) {
         manager?.updatePanel()

@@ -20,26 +20,47 @@ class HYAudiovisualCommonManager: NSObject {
     /// 当前音视频配置
     var playerConfig: HYPlayerCommonConfig? {
         willSet {
-            // 判断是否为第一次初始化，否则判断是否进行断点续播存储
-            if let config = playerConfig {
-                if config.playContinue {
-                    setPlayContinue()
+            if let newConfig = newValue {
+                // 判断是否为第一次初始化，否则判断是否进行断点续播存储
+                if let oldConfig = playerConfig {
+                    
+                    if let customEndView = newConfig.customEndView,
+                        (oldConfig.audioUrl == newConfig.audioUrl && oldConfig.videoUrl == newConfig.videoUrl)
+                    {
+                        // 播放链接未修改 -> 修改播放结束界面
+                        for subView in playerView?.endPlayView?.subviews ?? [] {
+                            subView.removeFromSuperview()
+                        }
+                        
+                        playerView?.endPlayView?.addSubview(customEndView)
+                        customEndView.snp.makeConstraints { (make) in
+                            make.edges.equalToSuperview()
+                        }
+                        
+                        isChangeEndView = true
+                    } else if oldConfig.playContinue {
+                        setPlayContinue()
+                    }
+                    
+                    firstLoad = false
+                } else {
+                    
+                    if HYReach.isReachableViaWWAN() {
+                        print("当前使用手机流量")
+                        playerView?.delegate?.flowRemind()
+                    }
+                    
+                    firstLoad = true
                 }
-                firstLoad = false
-            } else {
-                
-                if HYReach.isReachableViaWWAN() {
-                    print("当前使用手机流量")
-                    playerView?.delegate?.flowRemind()
-                }
-                
-                firstLoad = true
             }
         }
         
         didSet {
             //  初始化播放器
-            if let config = playerConfig {
+            if isChangeEndView {
+                isChangeEndView = false
+            } else if let config = playerConfig {
+                
                 isVideo = config.videoUrl != nil && config.videoUrl != ""
                 updatePlayerItem(config: config)
             }
@@ -115,6 +136,8 @@ class HYAudiovisualCommonManager: NSObject {
     /// 视频尺寸
     var videoSize: CGSize?
     
+    /// 是否修改播放结束页面
+    private var isChangeEndView = false
     /// 是否第一次加载（非流量不自动播放）
     private var firstLoad = true
     /// 视频缓存
