@@ -16,6 +16,9 @@ protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
     /** 流量提醒*/
     func flowRemind()
     
+    /** 流量模式下播放缓存视频*/
+    func playingCachedVideo()
+    
     /** 开始播放*/
     func startPlayer()
     
@@ -42,6 +45,7 @@ protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
 extension HYPlayerCommonViewDelegate {
     func changeFullScreen(isFull: Bool){}
     func flowRemind(){}
+    func playingCachedVideo(){}
     func startPlayer(){}
     func pausePlayer(){}
     func stopPlayer(){}

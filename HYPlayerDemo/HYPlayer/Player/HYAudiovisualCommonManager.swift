@@ -208,6 +208,9 @@ class HYAudiovisualCommonManager: NSObject {
     private func playVideo(urlStr: String, config: HYPlayerCommonConfig) {
         
         func playVideo(item: AVPlayerItem) {
+            
+            playerView?.playerItem = item
+            
             playerView?.videoPlayer?.pause()
             
             if playerView?.videoPlayer == nil {
@@ -228,6 +231,8 @@ class HYAudiovisualCommonManager: NSObject {
                 if videoCacher.isUrlCached(url: urlStr) {
                     // 播放已经缓存的音视频
                     playerStatus = .playing
+                    
+                    playerView?.delegate?.playingCachedVideo()
                     print("播放已经缓存的音视频")
                 } else {
                     playerStatus = .pause
@@ -390,10 +395,6 @@ extension HYAudiovisualCommonManager {
         let currentMM = Int(currentTime / 60)
         let currentSS = Int(currentTime.truncatingRemainder(dividingBy: 60))
         let string = String(format: "%.2i:%.2i/%.2i:%.2i", currentMM, currentSS, totalMM, totalSS)
-        
-        if currentSS > 0 {
-            playerView?.placeHoldImgView.isHidden = true
-        }
         
         // 时间显示修改
         playerView?.controlPanel.timeLabel.text = string

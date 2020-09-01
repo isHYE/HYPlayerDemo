@@ -45,6 +45,14 @@ class HYPlayerCommonView: UIView {
     var videoPlayer: AVPlayer?
     /// 播放器layer
     var playerLayer: AVPlayerLayer?
+    /// 媒体资源管理对象
+    var playerItem: AVPlayerItem? {
+        didSet {
+            if let item = playerItem {
+                item.addObserver(self, forKeyPath: "status", options: .new, context: nil)
+            }
+        }
+    }
     
     //MARK: Private Config
     /// 普通事件管理
@@ -347,6 +355,18 @@ extension HYPlayerCommonView {
 
 //MARK: 控件事件
 extension HYPlayerCommonView {
+    
+    /** playerItem的监听*/
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let item = self.playerItem else { return }
+        
+        if keyPath == "status" {
+            if item.status == .readyToPlay {
+                print("播放器就绪")
+                placeHoldImgView.isHidden = true
+            }
+        }
+    }
     
     /** app退出活跃状态*/
     @objc func applicationWillResignActive() {
