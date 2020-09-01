@@ -39,6 +39,13 @@ class HYPlayerCommonView: UIView {
     var endPlayView: HYEndPlayView?
     /// 快捷操作提醒
     var speedyRemindView: HYSpeedyRemindView?
+    /// 无网提示界面
+    lazy var noNetView: HYWithoutNetView = {
+        let view = HYWithoutNetView()
+        view.isHidden = true
+        view.checkNetBtn.addTarget(self, action: #selector(checkLocalNet), for: .touchUpInside)
+        return view
+    }()
     
     //MARK: 播放器相关
     /// 播放器
@@ -134,6 +141,10 @@ class HYPlayerCommonView: UIView {
         createControlPanel()
         createEndPlayView()
         
+        addSubview(noNetView)
+        noNetView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     /** 配置控制面板*/
@@ -379,6 +390,8 @@ extension HYPlayerCommonView {
         if manager?.isFullScreen == true {
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
         }
+        
+        noNetView.isHidden = HYReach.isReachable()
     }
     
     /** 播放器屏幕被点击 -> 呼出控制面板*/
@@ -454,6 +467,19 @@ extension HYPlayerCommonView {
         } else {
             fullMaskView?.hidMoreFunctionView()
             manager?.resetHideTimer()
+        }
+    }
+    
+    /** 检查本地网络*/
+    @objc private func checkLocalNet() {
+        if let url = URL(string: UIApplication.openSettingsURLString){
+            if (UIApplication.shared.canOpenURL(url)){
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
         }
     }
     

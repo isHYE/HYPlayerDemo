@@ -41,16 +41,12 @@ class HYAudiovisualCommonManager: NSObject {
                     } else if oldConfig.playContinue {
                         setPlayContinue()
                     }
-                    
-                    firstLoad = false
                 } else {
                     
                     if HYReach.isReachableViaWWAN() {
                         print("当前使用手机流量")
                         playerView?.delegate?.flowRemind()
                     }
-                    
-                    firstLoad = true
                 }
             }
         }
@@ -138,8 +134,6 @@ class HYAudiovisualCommonManager: NSObject {
     
     /// 是否修改播放结束页面
     private var isChangeEndView = false
-    /// 是否第一次加载（非流量不自动播放）
-    private var firstLoad = true
     /// 视频缓存
     private let videoCacher: HYMediaCacher = HYMediaCacher<HYDefaultVideoCacheLocation>()
     /// 断点续播节点列表
@@ -226,22 +220,23 @@ class HYAudiovisualCommonManager: NSObject {
                 playerView?.videoPlayer?.replaceCurrentItem(with: item)
             }
             
-            /// 进行视频的播放
-            if firstLoad && HYReach.isReachableViaWWAN() {
-                if videoCacher.isUrlCached(url: urlStr) {
-                    // 播放已经缓存的音视频
-                    playerStatus = .playing
-                    
-                    playerView?.delegate?.playingCachedVideo()
-                    print("播放已经缓存的音视频")
-                } else {
-                    playerStatus = .pause
-                }
-            } else {
-                playerStatus = .playing
-            }
+            playerView?.noNetView.isHidden = HYReach.isReachable()
             
-            firstLoad = false
+            
+            if videoCacher.isUrlCached(url: urlStr) {
+                // 播放已经缓存的音视频
+                playerStatus = .playing
+                playerView?.noNetView.isHidden = true
+                playerView?.delegate?.playingCachedVideo()
+                print("播放已经缓存的音视频")
+            } else {
+                /// 进行视频的播放
+                if HYReach.isReachableViaWWAN() {
+                    playerStatus = .pause
+                } else {
+                    playerStatus = .playing
+                }
+            }
             
             if config.playContinue {
                 if let playContinueList = NSDictionary(contentsOfFile: playContiuneListPath) {

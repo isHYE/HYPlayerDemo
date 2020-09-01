@@ -35,6 +35,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HYPlayerCommonView.updateCurrentPlayer(playerConfig:):HYPlayerCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "manager?.playerConfig">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "HYFullScreenMaskView.createMoreFunctionView():HYFullScreenMaskView.swift">
          <PersistentStrings>
             <PersistentString
@@ -49,10 +57,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "HYPlayerCommonView.updateCurrentPlayer(playerConfig:):HYPlayerCommonView.swift">
+         contextName = "HYPlayerCommonView.createBaseView():HYPlayerCommonView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "manager?.playerConfig">
+               value = "HYReach.isReachable()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -61,6 +69,14 @@
          <PersistentStrings>
             <PersistentString
                value = "endPlayView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "playVideo #1 (item:) in HYAudiovisualCommonManager.playVideo(urlStr:config:):HYAudiovisualCommonManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "HYReach.isReachableViaWWAN()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

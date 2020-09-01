@@ -39,6 +39,7 @@
 		7F72718D24D7A9B00064587A /* HYAudiovisualSpeedyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72717724D7A9B00064587A /* HYAudiovisualSpeedyManager.swift */; };
 		7F72719124D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72719024D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift */; };
 		7FAAC14124D8F6B000FB7202 /* HYResponseExpandButtton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAC14024D8F6B000FB7202 /* HYResponseExpandButtton.swift */; };
+		7FB5B5F724FE4EB30025AED0 /* HYWithoutNetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5B5F624FE4EB30025AED0 /* HYWithoutNetView.swift */; };
 		7FBC9BC224E8EC0900365675 /* PlayerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC124E8EC0900365675 /* PlayerListTableViewCell.swift */; };
 		7FBC9BC524E8F24700365675 /* testSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC424E8F24700365675 /* testSong.mp3 */; };
 		7FBC9BC824E8F4D600365675 /* PlayerCacheListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC724E8F4D600365675 /* PlayerCacheListController.swift */; };
@@ -86,6 +87,7 @@
 		7F72718E24D7AABC0064587A /* HYPlayerDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HYPlayerDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		7F72719024D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYMoreFunctionSpeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		7FAAC14024D8F6B000FB7202 /* HYResponseExpandButtton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYResponseExpandButtton.swift; sourceTree = "<group>"; };
+		7FB5B5F624FE4EB30025AED0 /* HYWithoutNetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYWithoutNetView.swift; sourceTree = "<group>"; };
 		7FBC9BC124E8EC0900365675 /* PlayerListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListTableViewCell.swift; sourceTree = "<group>"; };
 		7FBC9BC424E8F24700365675 /* testSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testSong.mp3; sourceTree = "<group>"; };
 		7FBC9BC724E8F4D600365675 /* PlayerCacheListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCacheListController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				7F72717424D7A9B00064587A /* HYControlPanelView.swift */,
 				7F72717524D7A9B00064587A /* HYFullScreenMaskView.swift */,
 				7F72717624D7A9B00064587A /* HYAudioPlayView.swift */,
+				7FB5B5F624FE4EB30025AED0 /* HYWithoutNetView.swift */,
 			);
 			path = ChildControlViews;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				7FBC9BCA24E8F66800365675 /* HYVideoCacheManager.swift in Sources */,
 				7F72718A24D7A9B00064587A /* HYControlPanelView.swift in Sources */,
 				7F72719124D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift in Sources */,
+				7FB5B5F724FE4EB30025AED0 /* HYWithoutNetView.swift in Sources */,
 				7F72717824D7A9B00064587A /* String+HYEncryption.swift in Sources */,
 				7F72717E24D7A9B00064587A /* HYMediaCacherDelegate.swift in Sources */,
 				7F72718224D7A9B00064587A /* HYAudiovisualCommonModel.swift in Sources */,
