@@ -189,9 +189,9 @@ class HYAudiovisualCommonManager: NSObject {
         }
         
         // 初始化播放器
-        if let urlStr = config.videoUrl {
+        if let urlStr = config.videoUrl, urlStr != "" {
             playVideo(urlStr: urlStr, config: config)
-        } else if let urlStr = config.audioUrl {
+        } else if let urlStr = config.audioUrl, urlStr != "" {
             playVideo(urlStr: urlStr, config: config)
         }
     }
