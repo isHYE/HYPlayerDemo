@@ -199,6 +199,8 @@ class HYPlayerCommonView: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(avplayerItemDidPlayToEndTime(_:)), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receiverNotification), name: UIDevice.orientationDidChangeNotification, object: nil)
+        
     }
     
     deinit {
@@ -209,6 +211,21 @@ class HYPlayerCommonView: UIView {
 
 //MARK: 公共配置方法
 extension HYPlayerCommonView {
+    
+    /// 更新当前播放内容
+    /// - Parameter commonConfig: 播放配置
+    func updateCurrentPlayer(playerConfig: HYPlayerCommonConfig) {
+        
+        if let oldConfig = manager?.playerConfig {
+            if oldConfig.audioUrl != playerConfig.audioUrl || oldConfig.videoUrl != playerConfig.videoUrl {
+                manager?.playerConfig = playerConfig
+            }
+        } else {
+            manager?.playerConfig = playerConfig
+        }
+        
+        audioPlayView?.isHidden = manager?.isVideo == true
+    }
     
     /** 暂停播放器*/
     func playerPause() {
@@ -228,21 +245,6 @@ extension HYPlayerCommonView {
         manager?.replayPlayerItem()
         playTimer?.invalidate()
         playTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updatePanel(sender:)), userInfo: nil, repeats: true)
-    }
-    
-    /// 更新当前播放内容
-    /// - Parameter commonConfig: 播放配置
-    func updateCurrentPlayer(playerConfig: HYPlayerCommonConfig) {
-        
-        if let oldConfig = manager?.playerConfig {
-            if oldConfig.audioUrl != playerConfig.audioUrl || oldConfig.videoUrl != playerConfig.videoUrl {
-                manager?.playerConfig = playerConfig
-            }
-        } else {
-            manager?.playerConfig = playerConfig
-        }
-        
-        audioPlayView?.isHidden = manager?.isVideo == true
     }
     
     /// 更新播放结束页面
@@ -279,12 +281,41 @@ extension HYPlayerCommonView {
 //MARK: 私有处理方法
 extension HYPlayerCommonView {
     
+    /// 改变屏幕显示状态
+    /// - Parameter orientationChange: 是否为物理旋转触发
+    private func changeScreenStatus(orientationChange: Bool = false) {
+        manager?.isFullScreen = !(manager?.isFullScreen ?? false)
+        
+        if let isFullScreen = manager?.isFullScreen {
+            delegate?.changeFullScreen(isFull: isFullScreen)
+        }
+        
+        if manager?.isFullScreen == true {
+            // 画面状态调为自适应
+            fullMaskView?.currentscreenStatus = 1
+            dealForFullScreenPlayer(orientationChange: orientationChange)
+        } else if manager?.isFullScreen == false {
+            fullMaskView?.hidMoreFunctionView()
+            dealForNormalScreenPlayer()
+        }
+        
+        manager?.resetHideTimer()
+    }
+    
     /** 全屏播放处理*/
-    private func dealForFullScreenPlayer()  {
+    private func dealForFullScreenPlayer(orientationChange: Bool = false)  {
         
         backgroundColor = .black
         if manager?.isVerticalScreen == true {
             UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        } else if orientationChange {
+            let orient = UIDevice.current.orientation
+            
+            if orient == .landscapeRight {
+                UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+            } else if orient == .landscapeLeft {
+                UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+            }
         } else {
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
         }
@@ -379,6 +410,17 @@ extension HYPlayerCommonView {
         }
     }
     
+    /** 设备旋转监听*/
+    @objc func receiverNotification() {
+        let orient = UIDevice.current.orientation
+        
+        if fullMaskView?.lockBtn.isSelected == false {
+            if (orient == .portrait && manager?.isFullScreen == true) || ((orient == .landscapeLeft || orient == .landscapeRight) && manager?.isFullScreen != true) {
+                changeScreenStatus(orientationChange: true)
+            }
+        }
+    }
+    
     /** app退出活跃状态*/
     @objc func applicationWillResignActive() {
         manager?.playerStatus = .pause
@@ -413,24 +455,7 @@ extension HYPlayerCommonView {
     
     /** 全屏响应处理的方法（全屏状态回到小屏，小屏状态展开全屏）*/
     @objc private func screenButtonDidClicked() {
-        
-        manager?.isFullScreen = !(manager?.isFullScreen ?? false)
-        
-        if let isFullScreen = manager?.isFullScreen {
-            delegate?.changeFullScreen(isFull: isFullScreen)
-        }
-        
-        if manager?.isFullScreen == true {
-            // 画面状态调为自适应
-            fullMaskView?.currentscreenStatus = 1
-            dealForFullScreenPlayer()
-        } else if manager?.isFullScreen == false {
-            fullMaskView?.hidMoreFunctionView()
-            dealForNormalScreenPlayer()
-        }
-        
-        manager?.resetHideTimer()
-        
+        changeScreenStatus()
     }
     
     /** 播放｜暂停按钮被点击*/
