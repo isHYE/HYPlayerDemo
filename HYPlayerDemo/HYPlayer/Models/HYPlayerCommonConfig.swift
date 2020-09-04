@@ -29,7 +29,6 @@ struct HYPlayerCommonConfig {
     
     /// 视频封面图
     var placeHoldImgStr: String?
-    var placeHoldImgUrl: URL?
     
     /// 自定义播放结束页面
     var customEndView: UIView?
@@ -52,12 +51,12 @@ struct HYPlayerCommonConfig {
     ///   - customEndView: 自定义播放结束界面（可不传）
     ///   - customAudioView: 自定义音频播放界面（可不传）
     ///   - authenticationFunc: 播放地址鉴权函数(可不传)
-    init<T>(title: String = "",
+    init(title: String = "",
             videoUrl: String? = nil,
             audioUrl: String? = nil,
             needCache: Bool = false,
             playContinue: Bool = true,
-            placeHoldImg: T? = nil,
+            placeHoldImg: String? = nil,
             customEndView: UIView? = nil,
             customAudioView: UIView? = nil,
             authenticationFunc: ((URL) -> URL)? = nil)
@@ -68,15 +67,8 @@ struct HYPlayerCommonConfig {
         self.needCache = needCache
         self.playContinue = playContinue
         self.customEndView = customEndView
+        self.placeHoldImgStr = placeHoldImg
         self.customAudioView = customAudioView
         self.authenticationFunc = authenticationFunc
-        
-        if let img = placeHoldImg {
-            if let imgStr = img as? String {
-                placeHoldImgStr = imgStr
-            } else if let imgUrl = img as? URL {
-                placeHoldImgUrl = imgUrl
-            }
-        }
     }
 }

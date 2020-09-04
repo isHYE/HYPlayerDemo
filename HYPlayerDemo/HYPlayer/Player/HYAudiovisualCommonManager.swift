@@ -156,15 +156,17 @@ class HYAudiovisualCommonManager: NSObject {
         playerView?.fullMaskView?.titleLab.text = config.title
         
         // 封面图处理
-        if let imgStr = config.placeHoldImgStr {
-            playerView?.placeHoldImgView.isHidden = false
-            playerView?.placeHoldImgView.image = UIImage(named: imgStr)
-        } else if let imgUrl = config.placeHoldImgUrl {
-            playerView?.placeHoldImgView.isHidden = false
-            let data = try? Data(contentsOf: imgUrl)
-            if let imageData = data {
-                let image = UIImage(data: imageData)
-                playerView?.placeHoldImgView.image = image
+        if let imgStr = config.placeHoldImgStr, imgStr != "" {
+            if let placeHoldImg = UIImage(named: imgStr) {
+                playerView?.placeHoldImgView.isHidden = false
+                playerView?.placeHoldImgView.image = placeHoldImg
+            } else if let imgUrl = URL(string: imgStr) {
+                playerView?.placeHoldImgView.isHidden = false
+                let data = try? Data(contentsOf: imgUrl)
+                if let imageData = data {
+                    let image = UIImage(data: imageData)
+                    playerView?.placeHoldImgView.image = image
+                }
             }
         }
         

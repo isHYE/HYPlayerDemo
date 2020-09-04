@@ -92,12 +92,14 @@ class HYAudiovisualSpeedyManager {
             && abs(point.x - startPoint.x) < abs(point.y - startPoint.y)
             && (currentSpeedyType == nil || currentSpeedyType == .lightingUp || currentSpeedyType == .lightingDown)
         {
+            // 亮度调节
             currentSpeedyType = point.y < startPoint.y ? .lightingUp : .lightingDown
         }
         else if startPoint.x > HY_SCREEN_WIDTH / 2
             && abs(point.x - startPoint.x) < abs(point.y - startPoint.y)
             && (currentSpeedyType == nil || currentSpeedyType == .volumeUp || currentSpeedyType == .volumeDown)
         {
+            // 声音调节
             currentSpeedyType = point.y < startPoint.y ? .volumeUp : .volumeDown
         }
         

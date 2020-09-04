@@ -16,10 +16,10 @@ class VideoViewController: UIViewController {
         = [HYPlayerCommonConfig(title: "网络视频测试",
                                 videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4",
                                 needCache: true,
-                                placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")),
+                                placeHoldImg: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png"),
            HYPlayerCommonConfig(title: "本地视频测试",
                                 videoUrl: Bundle.main.path(forResource: "testMovie", ofType: "mp4"),
-                                placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")),
+                                placeHoldImg: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png"),
            HYPlayerCommonConfig(title: "音频测试",
                                 audioUrl: "http://music.163.com/song/media/outer/url?id=447925558.mp3",
                                 placeHoldImg: "radio_bg_video"),
@@ -101,7 +101,7 @@ class VideoViewController: UIViewController {
             HYPlayerCommonConfig(title: "视频测试",
                                  videoUrl: "http://1253131631.vod2.myqcloud.com/26f327f9vodgzp1253131631/f4c0c9e59031868222924048327/f0.mp4",
                                  needCache: true,
-                                 placeHoldImg: URL(string: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png")))
+                                 placeHoldImg: "http://chinaapper.com/pth/pth80coursepictures/teacher_2.png"))
         
         tableView.delegate = self
         tableView.dataSource = self
