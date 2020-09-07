@@ -227,6 +227,7 @@ extension HYPlayerCommonView {
             manager?.playerConfig = playerConfig
         }
         
+        endPlayView?.isHidden = true
         audioPlayView?.isHidden = manager?.isVideo == true
     }
     
