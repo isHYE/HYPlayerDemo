@@ -116,7 +116,9 @@ class HYVideoCacheManager: NSObject, URLSessionDownloadDelegate {
     /* Sent periodically to notify the delegate of download progress. */
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
-        
+        guard let cache = caches[downloadTask] else {
+            return
+        }
         
         progress[downloadTask] = (Int(totalBytesWritten), Int(totalBytesExpectedToWrite))
         
@@ -131,7 +133,7 @@ class HYVideoCacheManager: NSObject, URLSessionDownloadDelegate {
         
         if expected != 0 || progress.count < caches.count {
             let progress = Float(written) / Float(expected)
-            NotificationCenter.default.post(name: .HYVideoCacheManagerDidUpdateProgress, object: self, userInfo: ["progress": progress])
+            NotificationCenter.default.post(name: .HYVideoCacheManagerDidUpdateProgress, object: self, userInfo: ["progress": progress, "videoCache": cache])
         }
     }
     

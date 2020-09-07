@@ -13,6 +13,9 @@ protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
     /** 全屏状态改变*/
     func changeFullScreen(isFull: Bool)
     
+    /** 全屏锁定*/
+    func fullScreenLock(isLock: Bool)
+    
     /** 流量提醒*/
     func flowRemind()
     
@@ -44,6 +47,7 @@ protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
 
 extension HYPlayerCommonViewDelegate {
     func changeFullScreen(isFull: Bool){}
+    func fullScreenLock(isLock: Bool){}
     func flowRemind(){}
     func playingCachedVideo(){}
     func startPlayer(){}

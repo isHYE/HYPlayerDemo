@@ -134,8 +134,6 @@ class HYAudiovisualCommonManager: NSObject {
     
     /// 是否修改播放结束页面
     private var isChangeEndView = false
-    /// 视频缓存
-    private let videoCacher: HYMediaCacher = HYMediaCacher<HYDefaultVideoCacheLocation>()
     /// 断点续播节点列表
     private var playContiuneListPath: String = HYFileDirectory.PlayContinue.listPlist
     /// 当前播放地址
@@ -224,13 +222,16 @@ class HYAudiovisualCommonManager: NSObject {
             
             playerView?.noNetView.isHidden = HYReach.isReachable()
             
-            
-            if videoCacher.isUrlCached(url: urlStr) {
+            if playerView?.videoCacher.isUrlCached(url: urlStr) ?? false {
                 // 播放已经缓存的音视频
                 playerStatus = .playing
                 playerView?.noNetView.isHidden = true
                 playerView?.delegate?.playingCachedVideo()
                 print("播放已经缓存的音视频")
+            } else if !isOnlineResource(urlStr) {
+                // 播放本地资源
+                playerStatus = .playing
+                playerView?.noNetView.isHidden = true
             } else {
                 /// 进行视频的播放
                 if HYReach.isReachableViaWWAN() {
@@ -257,7 +258,7 @@ class HYAudiovisualCommonManager: NSObject {
         var isOnlineSource: Bool = true
         // 播放地址
         let playerUrl: URL
-        if urlStr.starts(with: "http") {
+        if isOnlineResource(urlStr) {
             playerUrl = URL(string: urlStr)!
         } else {
             isOnlineSource = false
@@ -268,10 +269,9 @@ class HYAudiovisualCommonManager: NSObject {
             // 缓存的处理
             let location = HYDefaultVideoCacheLocation(remoteURL: playerUrl, mediaType: isVideo ? .video : .audio, authenticationFunc: config.authenticationFunc)
             let canCache = HYCacheStorage.available > Float(500 * 1024 * 1024)
-            videoCacher.delegate = playerView
             
             // 如已缓存 -> 播放缓存，未缓存 -> 播放Url并进行本地缓存
-            if let cache = videoCacher.makeCache(location: location, cacheImmediately: canCache){
+            if let cache = playerView?.videoCacher.makeCache(location: location, cacheImmediately: canCache){
                 
                 if let asset = cache.asset {
                     let item = AVPlayerItem(asset: asset)
@@ -286,7 +286,7 @@ class HYAudiovisualCommonManager: NSObject {
                         playVideo(item: item)
                         
                         // 已缓存则读满进度
-                        if self.videoCacher.cacheList.contains(cache.identifier) {
+                        if self.playerView?.videoCacher.cacheList.contains(cache.identifier) == true {
                             self.playerView?.controlPanel.cacheView.frame = CGRect(x: 48, y: 20, width: HY_SCREEN_WIDTH - 176, height: 1)
                         }
                     }
@@ -319,6 +319,10 @@ class HYAudiovisualCommonManager: NSObject {
         }
     }
     
+    /** 判断是否为网络资源*/
+    func isOnlineResource(_ urlStr: String) -> Bool {
+        return urlStr.starts(with: "http")
+    }
     
     /** 获取播放器画面尺寸*/
     func getVideoFrame() -> CGRect {

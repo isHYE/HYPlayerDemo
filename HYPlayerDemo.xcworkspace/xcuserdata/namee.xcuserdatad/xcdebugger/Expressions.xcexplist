@@ -3,10 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "HYAudiovisualCommonView.dealForFullScreenPlayer():HYAudiovisualCommonView.swift">
+         contextName = "HYPlayerCommonView.updateCurrentPlayer(playerConfig:):HYPlayerCommonView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "SCREEN_HEIGHT">
+               value = "manager?.playerConfig">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYVideoCourseCacheListView.tableView(_:cellForRowAt:):HYVideoCourseCacheListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cell.hasCached">
+            </PersistentString>
+            <PersistentString
+               value = "shouldContinueCurrentVideo">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -15,6 +26,14 @@
          <PersistentStrings>
             <PersistentString
                value = "speedCollectionView.bounds.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYVideoCourseCacheListView.tableView(_:numberOfRowsInSection:):HYVideoCourseCacheListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cacheList.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -35,10 +54,53 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "HYPlayerCommonView.updateCurrentPlayer(playerConfig:):HYPlayerCommonView.swift">
+         contextName = "HYVideoCourseCacheListView.finishVideoCache(cacheIdentifier:):HYVideoCourseCacheListView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "manager?.playerConfig">
+               value = "tableView.indexPathsForSelectedRows">
+            </PersistentString>
+            <PersistentString
+               value = "cell.cacheIdentifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYAudiovisualCommonManager.playerStatus.didset:HYAudiovisualCommonManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "status.controlPlayImg">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYPlayerCommonView.createBaseView():HYPlayerCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "HYReach.isReachable()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "VideoViewController.viewDidLoad():VideoViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYAudiovisualCommonView.dealForFullScreenPlayer():HYAudiovisualCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "SCREEN_HEIGHT">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYPlayerCommonView.avplayerItemDidPlayToEndTime(_:):HYPlayerCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "endPlayView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -57,34 +119,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "HYPlayerCommonView.createBaseView():HYPlayerCommonView.swift">
+         contextName = "HYVideoCourseCacheListView.configView(cacheList:):HYVideoCourseCacheListView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "HYReach.isReachable()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "HYPlayerCommonView.avplayerItemDidPlayToEndTime(_:):HYPlayerCommonView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "endPlayView">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "playVideo #1 (item:) in HYAudiovisualCommonManager.playVideo(urlStr:config:):HYAudiovisualCommonManager.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "HYReach.isReachableViaWWAN()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "HYAudiovisualCommonManager.playerStatus.didset:HYAudiovisualCommonManager.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "status.controlPlayImg">
+               value = "self.cacheList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -96,6 +134,14 @@
             </PersistentString>
             <PersistentString
                value = "UIScreen.main.bounds.size.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "playVideo #1 (item:) in HYAudiovisualCommonManager.playVideo(urlStr:config:):HYAudiovisualCommonManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "HYReach.isReachableViaWWAN()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

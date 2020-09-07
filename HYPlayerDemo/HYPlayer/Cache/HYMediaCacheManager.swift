@@ -138,6 +138,8 @@ public class HYMediaCacheManager: NSObject {
             return .cached
         case .unknown, .cancelled:
             break
+        default:
+            break
         }
         
         timer?.invalidate()

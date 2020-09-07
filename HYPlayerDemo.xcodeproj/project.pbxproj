@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F0711F62501DE1B003D6F9F /* HYPlayerCacheListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0711F52501DE1B003D6F9F /* HYPlayerCacheListView.swift */; };
+		7F0711FA2501DE36003D6F9F /* HYPlayerCacheListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0711F82501DE36003D6F9F /* HYPlayerCacheListCell.swift */; };
+		7F0711FD2501E403003D6F9F /* HYStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0711FC2501E403003D6F9F /* HYStorage.swift */; };
+		7F0711FF250220CE003D6F9F /* HYCacheProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0711FE250220CE003D6F9F /* HYCacheProgressView.swift */; };
 		7F5E6C1C24DC03C100DEE555 /* HYPlayerConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5E6C1B24DC03C100DEE555 /* HYPlayerConstant.swift */; };
 		7F72714324D7A9460064587A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72714224D7A9460064587A /* AppDelegate.swift */; };
 		7F72714524D7A9460064587A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F72714424D7A9460064587A /* SceneDelegate.swift */; };
@@ -42,7 +46,6 @@
 		7FB5B5F724FE4EB30025AED0 /* HYWithoutNetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5B5F624FE4EB30025AED0 /* HYWithoutNetView.swift */; };
 		7FBC9BC224E8EC0900365675 /* PlayerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC124E8EC0900365675 /* PlayerListTableViewCell.swift */; };
 		7FBC9BC524E8F24700365675 /* testSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC424E8F24700365675 /* testSong.mp3 */; };
-		7FBC9BC824E8F4D600365675 /* PlayerCacheListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC724E8F4D600365675 /* PlayerCacheListController.swift */; };
 		7FBC9BCA24E8F66800365675 /* HYVideoCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC9BC924E8F66800365675 /* HYVideoCacheManager.swift */; };
 		7FBC9BCC24E9050C00365675 /* testMovie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC9BCB24E9050C00365675 /* testMovie.mp4 */; };
 		CDD4286B67AF8D8C1FE376CD /* Pods_HYPlayerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312CD825D97236A5AE22FB3C /* Pods_HYPlayerDemo.framework */; };
@@ -52,6 +55,10 @@
 		0E52EF8F02AC7DE2298DEF60 /* Pods-HYPlayerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYPlayerDemo.release.xcconfig"; path = "Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		2EF199AEF2B1431C396C59B9 /* Pods-HYPlayerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HYPlayerDemo.debug.xcconfig"; path = "Target Support Files/Pods-HYPlayerDemo/Pods-HYPlayerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		312CD825D97236A5AE22FB3C /* Pods_HYPlayerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HYPlayerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F0711F52501DE1B003D6F9F /* HYPlayerCacheListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYPlayerCacheListView.swift; sourceTree = "<group>"; };
+		7F0711F82501DE36003D6F9F /* HYPlayerCacheListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYPlayerCacheListCell.swift; sourceTree = "<group>"; };
+		7F0711FC2501E403003D6F9F /* HYStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYStorage.swift; sourceTree = "<group>"; };
+		7F0711FE250220CE003D6F9F /* HYCacheProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYCacheProgressView.swift; sourceTree = "<group>"; };
 		7F5E6C1B24DC03C100DEE555 /* HYPlayerConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYPlayerConstant.swift; sourceTree = "<group>"; };
 		7F72713F24D7A9460064587A /* HYPlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HYPlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F72714224D7A9460064587A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,7 +97,6 @@
 		7FB5B5F624FE4EB30025AED0 /* HYWithoutNetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYWithoutNetView.swift; sourceTree = "<group>"; };
 		7FBC9BC124E8EC0900365675 /* PlayerListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListTableViewCell.swift; sourceTree = "<group>"; };
 		7FBC9BC424E8F24700365675 /* testSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testSong.mp3; sourceTree = "<group>"; };
-		7FBC9BC724E8F4D600365675 /* PlayerCacheListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCacheListController.swift; sourceTree = "<group>"; };
 		7FBC9BC924E8F66800365675 /* HYVideoCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HYVideoCacheManager.swift; sourceTree = "<group>"; };
 		7FBC9BCB24E9050C00365675 /* testMovie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testMovie.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +113,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F0711F22501DDCA003D6F9F /* HYProactiveCaching */ = {
+			isa = PBXGroup;
+			children = (
+				7F0711FE250220CE003D6F9F /* HYCacheProgressView.swift */,
+				7F0711F82501DE36003D6F9F /* HYPlayerCacheListCell.swift */,
+				7F0711F52501DE1B003D6F9F /* HYPlayerCacheListView.swift */,
+			);
+			path = HYProactiveCaching;
+			sourceTree = "<group>";
+		};
 		7F72713624D7A9460064587A = {
 			isa = PBXGroup;
 			children = (
@@ -130,12 +146,12 @@
 			children = (
 				7FBC9BC324E8F23E00365675 /* Source */,
 				7F72715824D7A9B00064587A /* HYPlayer */,
+				7F0711F22501DDCA003D6F9F /* HYProactiveCaching */,
 				7F72714224D7A9460064587A /* AppDelegate.swift */,
 				7F72714424D7A9460064587A /* SceneDelegate.swift */,
 				7F72714624D7A9460064587A /* ViewController.swift */,
 				7F72715624D7A99B0064587A /* VideoViewController.swift */,
 				7FBC9BC124E8EC0900365675 /* PlayerListTableViewCell.swift */,
-				7FBC9BC724E8F4D600365675 /* PlayerCacheListController.swift */,
 				7F72714824D7A9460064587A /* Main.storyboard */,
 				7F72714B24D7A9490064587A /* Assets.xcassets */,
 				7F72714D24D7A9490064587A /* LaunchScreen.storyboard */,
@@ -177,6 +193,7 @@
 				7F72715E24D7A9B00064587A /* HYMediaCryptor.swift */,
 				7F72715F24D7A9B00064587A /* HYMediaCacher.swift */,
 				7F72716024D7A9B00064587A /* Protocols */,
+				7F0711FC2501E403003D6F9F /* HYStorage.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -412,13 +429,15 @@
 				7F72718A24D7A9B00064587A /* HYControlPanelView.swift in Sources */,
 				7F72719124D7EE740064587A /* HYMoreFunctionSpeedCollectionViewCell.swift in Sources */,
 				7FB5B5F724FE4EB30025AED0 /* HYWithoutNetView.swift in Sources */,
+				7F0711F62501DE1B003D6F9F /* HYPlayerCacheListView.swift in Sources */,
 				7F72717824D7A9B00064587A /* String+HYEncryption.swift in Sources */,
 				7F72717E24D7A9B00064587A /* HYMediaCacherDelegate.swift in Sources */,
 				7F72718224D7A9B00064587A /* HYAudiovisualCommonModel.swift in Sources */,
 				7F72717D24D7A9B00064587A /* HYMediaCacheDelegate.swift in Sources */,
+				7F0711FA2501DE36003D6F9F /* HYPlayerCacheListCell.swift in Sources */,
 				7F72718724D7A9B00064587A /* HYAudiovisualCommonManager.swift in Sources */,
 				7F72714724D7A9460064587A /* ViewController.swift in Sources */,
-				7FBC9BC824E8F4D600365675 /* PlayerCacheListController.swift in Sources */,
+				7F0711FF250220CE003D6F9F /* HYCacheProgressView.swift in Sources */,
 				7F72717C24D7A9B00064587A /* HYMediaCacher.swift in Sources */,
 				7F72718424D7A9B00064587A /* HYFileDirectory.swift in Sources */,
 				7F72718624D7A9B00064587A /* HYPlayerCommonView.swift in Sources */,
@@ -428,6 +447,7 @@
 				7F72715724D7A99C0064587A /* VideoViewController.swift in Sources */,
 				7F72718324D7A9B00064587A /* HYCacheStorage.swift in Sources */,
 				7F72717924D7A9B00064587A /* HYDefaultVideoCacheLocation.swift in Sources */,
+				7F0711FD2501E403003D6F9F /* HYStorage.swift in Sources */,
 				7F72718524D7A9B00064587A /* HYPlayerCommonViewDelegate.swift in Sources */,
 				7F72714524D7A9460064587A /* SceneDelegate.swift in Sources */,
 				7F72718B24D7A9B00064587A /* HYFullScreenMaskView.swift in Sources */,

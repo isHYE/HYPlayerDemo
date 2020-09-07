@@ -32,6 +32,7 @@ struct HYPlayerCommonConfig {
     
     /// 自定义播放结束页面
     var customEndView: UIView?
+    
     /// 自定义音频播放页面
     var customAudioView: UIView?
     

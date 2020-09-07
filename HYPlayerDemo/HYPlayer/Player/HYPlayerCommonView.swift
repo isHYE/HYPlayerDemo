@@ -60,6 +60,8 @@ class HYPlayerCommonView: UIView {
             }
         }
     }
+    /// 视频缓存
+    let videoCacher: HYMediaCacher = HYMediaCacher<HYDefaultVideoCacheLocation>()
     
     //MARK: Private Config
     /// 普通事件管理
@@ -75,6 +77,7 @@ class HYPlayerCommonView: UIView {
         fatherView = baseView
         manager = HYAudiovisualCommonManager(self)
         speedyManager = HYAudiovisualSpeedyManager(self)
+        videoCacher.delegate = self
         
         createBaseView()
         addObserver()
@@ -470,6 +473,7 @@ extension HYPlayerCommonView {
     /** 全屏锁定｜解锁*/
     @objc private func fullScreenLockClicked() {
         if let isLock = fullMaskView?.lockBtn.isSelected {
+            delegate?.fullScreenLock(isLock: !isLock)
             fullMaskView?.lockBtn.isSelected = !isLock
             if !isLock {
                 controlPanel.isHidden = true

@@ -13,7 +13,7 @@ class PlayerListTableViewCell: UITableViewCell {
     /// 标题
     var titleLab: UILabel = {
         let lab = UILabel()
-        lab.textColor = .black
+        lab.textColor = .gray
         lab.font = UIFont.systemFont(ofSize: 16)
         return lab
     }()
@@ -41,7 +41,7 @@ class PlayerListTableViewCell: UITableViewCell {
     
     private func createUI() {
         let lineView = UIView()
-        lineView.backgroundColor = .lightGray
+        lineView.backgroundColor = UIColor(red: 230 / 255, green: 230 / 255, blue: 230 / 255, alpha: 1)
         addSubview(lineView)
         lineView.snp.makeConstraints { (make) in
             make.leading.equalTo(16)
