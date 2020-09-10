@@ -458,12 +458,15 @@ extension HYAudiovisualCommonManager {
             }
         }
         
+        playerView?.delegate?.showControlPanel()
         resetHideTimer()
     }
     
     // 隐藏控制面板
     @objc func hideControlPanel(sender: Timer?) {
         sender?.invalidate()
+        
+        playerView?.delegate?.hideControlPanel()
         
         if !(playerStatus == .pause && sender != nil) {
             UIView.animate(withDuration: 0.25, animations: {

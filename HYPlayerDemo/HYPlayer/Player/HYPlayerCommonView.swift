@@ -444,17 +444,14 @@ extension HYPlayerCommonView {
     @objc func playerViewDidTapped() {
         if fullMaskView?.moreFunctionView.tag == 1 {
             // 收起更多功能面板
-            delegate?.hideControlPanel()
             fullMaskView?.hidMoreFunctionView()
             manager?.hideControlPanel(sender: nil)
         } else {
             if controlPanel.alpha == 0 {
                 // 控制面板隐藏 -> 呼出
-                delegate?.showControlPanel()
                 manager?.showControlPanel(animated: true)
             } else {
                 // 隐藏控制面板
-                delegate?.hideControlPanel()
                 manager?.hideControlPanel(sender: nil)
             }
         }
