@@ -433,7 +433,7 @@ extension HYAudiovisualCommonManager {
     func showControlPanel(animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.25, animations: {
-                if self.playerView?.fullMaskView?.lockBtn.isSelected == false {
+                if self.playerView?.fullMaskView?.isScreenLock == false {
                     self.playerView?.controlPanel.isHidden = false
                 }
                 
@@ -453,7 +453,7 @@ extension HYAudiovisualCommonManager {
             playerView?.controlPanel.alpha = 1
             playerView?.fullMaskView?.isHidden = false
             
-            if self.playerView?.fullMaskView?.lockBtn.isSelected == false {
+            if self.playerView?.fullMaskView?.isScreenLock == false {
                 playerView?.controlPanel.isHidden = false
             }
         }

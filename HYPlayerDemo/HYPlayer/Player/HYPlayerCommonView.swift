@@ -377,7 +377,7 @@ extension HYPlayerCommonView {
 extension HYPlayerCommonView {
     /** 开始滑动*/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, fullMaskView?.lockBtn.isSelected == false {
+        if let touch = touches.first, fullMaskView?.isScreenLock == false {
             let touchPoint = touch.location(in: self)
             speedyManager?.startDrag(point: touchPoint)
         }
@@ -385,7 +385,7 @@ extension HYPlayerCommonView {
     
     /** 滑动中*/
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, fullMaskView?.lockBtn.isSelected == false {
+        if let touch = touches.first, fullMaskView?.isScreenLock == false {
             let touchPoint = touch.location(in: self)
             speedyManager?.movedDrag(point: touchPoint)
         }
@@ -393,7 +393,7 @@ extension HYPlayerCommonView {
     
     /** 结束滑动*/
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if fullMaskView?.lockBtn.isSelected == false {
+        if fullMaskView?.isScreenLock == false {
             speedyManager?.endDrag()
         }
     }
@@ -418,7 +418,7 @@ extension HYPlayerCommonView {
     @objc func receiverNotification() {
         let orient = UIDevice.current.orientation
         
-        if fullMaskView?.lockBtn.isSelected == false {
+        if fullMaskView?.isScreenLock == false {
             if (orient == .portrait && manager?.isFullScreen == true) || ((orient == .landscapeLeft || orient == .landscapeRight) && manager?.isFullScreen != true) {
                 changeScreenStatus(orientationChange: true)
             }
@@ -473,9 +473,9 @@ extension HYPlayerCommonView {
     
     /** 全屏锁定｜解锁*/
     @objc private func fullScreenLockClicked() {
-        if let isLock = fullMaskView?.lockBtn.isSelected {
+        if let isLock = fullMaskView?.isScreenLock {
             delegate?.fullScreenLock(isLock: !isLock)
-            fullMaskView?.lockBtn.isSelected = !isLock
+            fullMaskView?.isScreenLock = !isLock
             if !isLock {
                 controlPanel.isHidden = true
                 fullMaskView?.naviView.isHidden = true

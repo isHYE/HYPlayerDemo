@@ -38,6 +38,7 @@ class VideoViewController: UIViewController {
                                  placeHoldImg: "radio_bg_video"),
             HYPlayerCommonConfig(title: "音频测试",
                                  audioUrl: "http://music.163.com/song/media/outer/url?id=447925558.mp3",
+                                 needCache: true,
                                  placeHoldImg: "radio_bg_video")]
     
     /// HYPlayer播放器

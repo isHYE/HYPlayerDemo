@@ -21,6 +21,13 @@ class HYFullScreenMaskView: UIView {
     
     weak var delegate: HYFullScreenMaskViewDelegate?
     
+    /// 全屏锁定
+    var isScreenLock = false {
+        didSet {
+            lockBtn.setImage(UIImage(named: isScreenLock ? "hy_fullscreen_lock" : "hy_fullscreen_unlock", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
+        }
+    }
+    
     var moreFunctionWidth: CGFloat = 300
     /// 当前播放速度
     var currentSpeed: Float = 1
@@ -65,7 +72,6 @@ class HYFullScreenMaskView: UIView {
     var lockBtn: HYResponseExpandButtton = {
         let btn = HYResponseExpandButtton()
         btn.setImage(UIImage(named: "hy_fullscreen_unlock", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .normal)
-        btn.setImage(UIImage(named: "hy_fullscreen_lock", in: HY_SOURCE_BUNDLE, compatibleWith: nil), for: .selected)
         return btn
     }()
     
