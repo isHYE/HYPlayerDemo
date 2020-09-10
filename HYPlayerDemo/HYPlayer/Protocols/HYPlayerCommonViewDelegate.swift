@@ -16,6 +16,12 @@ protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
     /** 全屏锁定*/
     func fullScreenLock(isLock: Bool)
     
+    /** 展示控制台*/
+    func showControlPanel()
+    
+    /** 隐藏控制台*/
+    func hideControlPanel()
+    
     /** 流量提醒*/
     func flowRemind()
     
@@ -48,6 +54,8 @@ protocol HYPlayerCommonViewDelegate: NSObjectProtocol {
 extension HYPlayerCommonViewDelegate {
     func changeFullScreen(isFull: Bool){}
     func fullScreenLock(isLock: Bool){}
+    func showControlPanel(){}
+    func hideControlPanel(){}
     func flowRemind(){}
     func playingCachedVideo(){}
     func startPlayer(){}

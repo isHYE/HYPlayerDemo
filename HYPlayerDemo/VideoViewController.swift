@@ -181,7 +181,7 @@ class VideoViewController: UIViewController {
     
     // 支持哪些转屏方向
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .all
+        return .allButUpsideDown
     }
     
     //        override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
@@ -298,6 +298,16 @@ extension VideoViewController: HYPlayerCommonViewDelegate {
     /** 全屏锁定*/
     func fullScreenLock(isLock: Bool) {
         isRollEnable = !isLock
+    }
+    
+    /** 展示控制台*/
+    func showControlPanel() {
+        print("展示控制台")
+    }
+    
+    /** 隐藏控制台*/
+    func hideControlPanel() {
+        print("隐藏控制台")
     }
     
     /** 流量提醒*/
