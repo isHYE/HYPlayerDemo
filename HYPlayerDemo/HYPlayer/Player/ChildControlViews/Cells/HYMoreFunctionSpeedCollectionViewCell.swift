@@ -28,7 +28,7 @@ class HYMoreFunctionSpeedCollectionViewCell: UICollectionViewCell {
     }
     
     private func createUI() {
-        addSubview(speedBtn)
+        contentView.addSubview(speedBtn)
         speedBtn.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
         }

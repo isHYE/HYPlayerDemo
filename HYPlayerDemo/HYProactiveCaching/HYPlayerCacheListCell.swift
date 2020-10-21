@@ -70,27 +70,27 @@ class HYPlayerCacheListCell: UITableViewCell {
     
     
     private func createUI() {
-        addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(14)
             make.centerY.equalToSuperview()
         }
         
-        addSubview(completionImageView)
+        contentView.addSubview(completionImageView)
         completionImageView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(-14)
             make.height.width.equalTo(20)
         }
         
-        addSubview(deleteButton)
+        contentView.addSubview(deleteButton)
         deleteButton.snp.makeConstraints { (make) in
             make.edges.equalTo(completionImageView)
         }
         
         cacheProgressView = HYCacheProgressView(frame: CGRect(x: HY_SCREEN_WIDTH - 36, y: 10, width: 24, height: 24))
         cacheProgressView?.isHidden = true
-        addSubview(cacheProgressView!)
+        contentView.addSubview(cacheProgressView!)
     }
 }
 

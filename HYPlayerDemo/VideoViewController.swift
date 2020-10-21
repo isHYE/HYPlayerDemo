@@ -124,11 +124,12 @@ class VideoViewController: UIViewController {
         
         let playView = UIView()
         playView.backgroundColor = .white
+        playView.clipsToBounds = true
         view.addSubview(playView)
         playView.snp.makeConstraints { (make) in
             make.top.equalTo(naviView.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(UIScreen.main.bounds.size.width / 16 * 9)
+            make.height.equalTo(0.1)
         }
         
         videoView = HYPlayerCommonView(playView)

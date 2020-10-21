@@ -22,10 +22,10 @@
          contextName = "HYVideoCourseCacheListView.tableView(_:cellForRowAt:):HYVideoCourseCacheListView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "shouldContinueCurrentVideo">
+               value = "cell.hasCached">
             </PersistentString>
             <PersistentString
-               value = "cell.hasCached">
+               value = "shouldContinueCurrentVideo">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -101,6 +101,14 @@
          <PersistentStrings>
             <PersistentString
                value = "SCREEN_HEIGHT">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TestViewController.viewDidLoad():TestViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "titleView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

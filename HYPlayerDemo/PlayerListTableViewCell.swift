@@ -42,7 +42,7 @@ class PlayerListTableViewCell: UITableViewCell {
     private func createUI() {
         let lineView = UIView()
         lineView.backgroundColor = UIColor(red: 230 / 255, green: 230 / 255, blue: 230 / 255, alpha: 1)
-        addSubview(lineView)
+        contentView.addSubview(lineView)
         lineView.snp.makeConstraints { (make) in
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
@@ -50,7 +50,7 @@ class PlayerListTableViewCell: UITableViewCell {
             make.height.equalTo(1)
         }
         
-        addSubview(titleLab)
+        contentView.addSubview(titleLab)
         titleLab.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.leading.equalTo(16)
