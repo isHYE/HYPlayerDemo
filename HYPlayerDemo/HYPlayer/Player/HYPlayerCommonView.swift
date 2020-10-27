@@ -100,6 +100,9 @@ class HYPlayerCommonView: UIView {
         videoView = UIView()
         let videoViewTap = UITapGestureRecognizer.init(target: self, action: #selector(playerViewDidTapped))
         videoView.addGestureRecognizer(videoViewTap)
+        
+        let videoViewLongPress = UILongPressGestureRecognizer(target: self, action: #selector(playerViewLongPressed))
+        videoView.addGestureRecognizer(videoViewLongPress)
         let videoViewMoreTap = UITapGestureRecognizer.init(target:self, action: #selector(playButtonDidClicked))
         videoViewMoreTap.numberOfTapsRequired = 2
         videoView.addGestureRecognizer(videoViewMoreTap)
@@ -454,6 +457,17 @@ extension HYPlayerCommonView {
                 // 隐藏控制面板
                 manager?.hideControlPanel(sender: nil)
             }
+        }
+    }
+    
+    /** 播放器长按加速*/
+    @objc private func playerViewLongPressed() {
+        // 获取当前播放倍速
+        let currentSpeed = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float ?? 1
+        // 非三倍速播放则长按快进
+        if currentSpeed != 3 {
+            print("长按中")
+//            videoPlayer?.rate = 3
         }
     }
     

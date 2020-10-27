@@ -129,7 +129,7 @@ class VideoViewController: UIViewController {
         playView.snp.makeConstraints { (make) in
             make.top.equalTo(naviView.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(0.1)
+            make.height.equalTo(UIScreen.main.bounds.size.width / 16 * 9)
         }
         
         videoView = HYPlayerCommonView(playView)
