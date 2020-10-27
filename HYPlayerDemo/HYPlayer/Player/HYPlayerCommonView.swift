@@ -46,6 +46,14 @@ class HYPlayerCommonView: UIView {
         view.checkNetBtn.addTarget(self, action: #selector(checkLocalNet), for: .touchUpInside)
         return view
     }()
+    /// 视频加速指示
+    private lazy var accelerationView: HYAccelerationView = {
+        let view = HYAccelerationView()
+        view.isHidden = true
+        view.alpha = 0
+        view.speedLab.text = String(format: "%.1f", playerAcceleration) + "x"
+        return view
+    }()
     
     //MARK: 播放器相关
     /// 播放器
@@ -64,6 +72,8 @@ class HYPlayerCommonView: UIView {
     let videoCacher: HYMediaCacher = HYMediaCacher<HYDefaultVideoCacheLocation>()
     
     //MARK: Private Config
+    /// 长按加速度
+    private let playerAcceleration: Float = 2
     /// 普通事件管理
     private var manager: HYAudiovisualCommonManager?
     /// 快捷操作管理
@@ -101,8 +111,8 @@ class HYPlayerCommonView: UIView {
         let videoViewTap = UITapGestureRecognizer.init(target: self, action: #selector(playerViewDidTapped))
         videoView.addGestureRecognizer(videoViewTap)
         
-        let videoViewLongPress = UILongPressGestureRecognizer(target: self, action: #selector(playerViewLongPressed))
-        videoView.addGestureRecognizer(videoViewLongPress)
+//        let videoViewLongPress = UILongPressGestureRecognizer(target: self, action: #selector(playerViewLongPressed(_:)))
+//        videoView.addGestureRecognizer(videoViewLongPress)
         let videoViewMoreTap = UITapGestureRecognizer.init(target:self, action: #selector(playButtonDidClicked))
         videoViewMoreTap.numberOfTapsRequired = 2
         videoView.addGestureRecognizer(videoViewMoreTap)
@@ -175,6 +185,8 @@ class HYPlayerCommonView: UIView {
         fullMaskView?.delegate = self
         let fullMaskTap = UITapGestureRecognizer.init(target: self, action: #selector(playerViewDidTapped))
         fullMaskView?.addGestureRecognizer(fullMaskTap)
+        let fullMaskLongPress = UILongPressGestureRecognizer(target: self, action: #selector(playerViewLongPressed(_:)))
+        fullMaskView?.addGestureRecognizer(fullMaskLongPress)
         let fullMaskMoreTap = UITapGestureRecognizer.init(target:self, action: #selector(playButtonDidClicked))
         fullMaskMoreTap.numberOfTapsRequired = 2
         fullMaskView?.addGestureRecognizer(fullMaskMoreTap)
@@ -461,13 +473,43 @@ extension HYPlayerCommonView {
     }
     
     /** 播放器长按加速*/
-    @objc private func playerViewLongPressed() {
-        // 获取当前播放倍速
-        let currentSpeed = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float ?? 1
-        // 非三倍速播放则长按快进
-        if currentSpeed != 3 {
-            print("长按中")
-//            videoPlayer?.rate = 3
+    @objc private func playerViewLongPressed(_ sender: UILongPressGestureRecognizer) {
+        if manager?.playerStatus == .playing {
+            // 获取当前播放倍速
+            let currentSpeed = UserDefaults.standard.value(forKey: "HYPlayer_rate") as? Float ?? 1
+            
+            if sender.state == UIGestureRecognizer.State.began && currentSpeed != playerAcceleration && videoPlayer?.rate != playerAcceleration {
+                // 长按加速视频
+                videoPlayer?.rate = playerAcceleration
+                manager?.hideControlPanel(sender: nil)
+                // 显示加速指示器
+                if accelerationView.superview == nil {
+                    addSubview(accelerationView)
+                    accelerationView.snp.makeConstraints { (make) in
+                        make.center.equalToSuperview()
+                        make.height.width.equalTo(45)
+                    }
+                    accelerationView.startRotation()
+                    accelerationView.isHidden = false
+                    UIView.animate(withDuration: 0.3) {
+                        self.accelerationView.alpha = 1
+                    }
+                }
+            } else if sender.state == UIGestureRecognizer.State.ended && videoPlayer?.rate != currentSpeed {
+                // 长按抬起 -> 恢复之前的速度
+                videoPlayer?.rate = currentSpeed
+                // 隐藏加速指示器
+                if accelerationView.superview != nil {
+                    UIView.animate(withDuration: 0.2) {
+                        self.accelerationView.alpha = 0
+                    } completion: { _ in
+                        self.accelerationView.stopRotation()
+                        self.accelerationView.isHidden = true
+                        self.accelerationView.removeFromSuperview()
+                    }
+
+                }
+            }
         }
     }
     
@@ -551,9 +593,7 @@ extension HYPlayerCommonView {
     /** 视频播放完毕*/
     @objc func avplayerItemDidPlayToEndTime(_ notification: Notification) {
         endPlayView?.isHidden = false
-        
         delegate?.stopPlayer()
-        print("视频播放完毕")
     }
     
 }
