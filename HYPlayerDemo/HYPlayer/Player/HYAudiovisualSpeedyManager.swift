@@ -25,6 +25,19 @@ class HYAudiovisualSpeedyManager {
         /// 音量调低
         case volumeDown
         
+        var remindImg: UIImage? {
+            switch self {
+            case .fastForward:
+                return UIImage(named: "hy_video_fastForward", in: HY_SOURCE_BUNDLE, compatibleWith: nil)
+            case .fastRewind:
+                return UIImage(named: "hy_video_fastRewind", in: HY_SOURCE_BUNDLE, compatibleWith: nil)
+            case .lightingUp, .lightingDown:
+                return UIImage(named: "hy_video_light", in: HY_SOURCE_BUNDLE, compatibleWith: nil)
+            default:
+                return nil
+            }
+        }
+        
     }
     
     weak var playerView: HYPlayerCommonView?
@@ -141,7 +154,8 @@ class HYAudiovisualSpeedyManager {
                     
                     // 调整当前播放时间点
                     if speedyTime < duration && speedyTime > 0 {
-                        playerView?.speedyRemindView?.remindLab.text = "\(currentSpeedyType == .fastForward ? "快进" : "快退")\(Int(speedyNum))秒"
+                        playerView?.speedyRemindView?.remindImgView.image = currentSpeedyType.remindImg
+                        playerView?.speedyRemindView?.remindLab.text = (currentSpeedyType == .fastForward ? "+ " : "- ") + "\(Int(speedyNum))s"
                         
                         let progress = Float(speedyTime / duration)
                         
@@ -169,8 +183,8 @@ class HYAudiovisualSpeedyManager {
                 }
                 
                 if speedyLighting >= 0 && speedyLighting <= 1 {
-                    
-                    playerView?.speedyRemindView?.remindLab.text = "亮度" + String(format: "%.0f", speedyLighting * 100) + "%"
+                    playerView?.speedyRemindView?.remindImgView.image = currentSpeedyType.remindImg
+                    playerView?.speedyRemindView?.remindLab.text = String(format: "%.0f", speedyLighting * 100) + "%"
                     UIScreen.main.brightness = speedyLighting
                 }
                 

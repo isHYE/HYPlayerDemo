@@ -10,17 +10,23 @@ import UIKit
 
 class HYSpeedyRemindView: UIView {
     
+    /// 提示图标
+    var remindImgView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.alpha = 0.8
+        return imgView
+    }()
+    
     /// 提醒文字
     var remindLab: UILabel = {
         let lab = UILabel()
-        lab.textColor = .white
-        lab.font = UIFont.systemFont(ofSize: 20)
+        lab.textColor = .black
+        lab.font = UIFont.systemFont(ofSize: 16)
         return lab
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        clipsToBounds = true
         createUI()
     }
     
@@ -29,7 +35,12 @@ class HYSpeedyRemindView: UIView {
     }
     
     private func createUI() {
-        backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        addSubview(remindImgView)
+        remindImgView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(80)
+        }
         
         addSubview(remindLab)
         remindLab.snp.makeConstraints { (make) in
