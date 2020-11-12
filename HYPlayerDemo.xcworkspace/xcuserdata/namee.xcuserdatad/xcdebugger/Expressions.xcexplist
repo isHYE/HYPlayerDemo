@@ -22,10 +22,10 @@
          contextName = "HYVideoCourseCacheListView.tableView(_:cellForRowAt:):HYVideoCourseCacheListView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cell.hasCached">
+               value = "shouldContinueCurrentVideo">
             </PersistentString>
             <PersistentString
-               value = "shouldContinueCurrentVideo">
+               value = "cell.hasCached">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -69,6 +69,14 @@
          <PersistentStrings>
             <PersistentString
                value = "videoSize">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HYPlayerCommonView.touchesEnded(_:with:):HYPlayerCommonView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fullMaskView?.isScreenLock">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

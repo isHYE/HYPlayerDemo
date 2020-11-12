@@ -558,12 +558,17 @@ extension HYPlayerCommonView {
     
     /** 检查本地网络*/
     @objc private func checkLocalNet() {
-        if let url = URL(string: UIApplication.openSettingsURLString){
-            if (UIApplication.shared.canOpenURL(url)){
-                if #available(iOS 10, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(url)
+        
+        if HYReach.isReachable() {
+            noNetView.isHidden = true
+        } else {
+            if let url = URL(string: UIApplication.openSettingsURLString){
+                if (UIApplication.shared.canOpenURL(url)){
+                    if #available(iOS 10, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    } else {
+                        UIApplication.shared.openURL(url)
+                    }
                 }
             }
         }
