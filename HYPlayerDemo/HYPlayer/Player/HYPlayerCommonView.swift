@@ -222,6 +222,9 @@ class HYPlayerCommonView: UIView {
     }
     
     deinit {
+        if let item = playerItem {
+            item.removeObserver(self, forKeyPath: "status", context: nil)
+        }
         NotificationCenter.default.removeObserver(self)
         print("HYPlayerCommonView Deinit")
     }
