@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import AVFoundation
+import AVKit
 
 class HYPlayerCommonView: UIView {
     
@@ -56,10 +57,28 @@ class HYPlayerCommonView: UIView {
     }()
     
     //MARK: 播放器相关
+    
+    /// 画中画播放器
+    var pipVc: AVPictureInPictureController?
     /// 播放器
     var videoPlayer: AVPlayer?
     /// 播放器layer
-    var playerLayer: AVPlayerLayer?
+    var playerLayer: AVPlayerLayer? {
+        didSet {
+            if let playerLayer = playerLayer, AVPictureInPictureController.isPictureInPictureSupported() {
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(.playback)
+                    try AVAudioSession.sharedInstance().setActive(true)
+                } catch let error {
+                    print(error)
+                }
+                
+                pipVc?.delegate = nil
+                pipVc = AVPictureInPictureController(playerLayer: playerLayer)
+                pipVc?.delegate = self
+            }
+        }
+    }
     /// 媒体资源管理对象
     var playerItem: AVPlayerItem? {
         didSet {
@@ -96,6 +115,8 @@ class HYPlayerCommonView: UIView {
         UIApplication.shared.isIdleTimerDisabled = true
         //按下slider的时候会停，抬起手后恢复，其他时间计时器在运行
         playTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updatePanel(sender:)), userInfo: nil, repeats: true)
+        
+        
     }
     
     //MARK: 视图创建
@@ -445,8 +466,14 @@ extension HYPlayerCommonView {
     
     /** app退出活跃状态*/
     @objc func applicationWillResignActive() {
-        manager?.playerStatus = .pause
+        if AVPictureInPictureController.isPictureInPictureSupported() && pipVc != nil {
+            pipVc?.startPictureInPicture()
+        } else {
+            manager?.playerStatus = .pause
+        }
+        
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        
     }
     
     /** app进入活跃状态*/
@@ -456,6 +483,7 @@ extension HYPlayerCommonView {
         }
         
         noNetView.isHidden = HYReach.isReachable()
+        pipVc?.stopPictureInPicture()
     }
     
     /** 播放器屏幕被点击 -> 呼出控制面板*/
@@ -650,4 +678,75 @@ extension HYPlayerCommonView: HYMediaCacherDelegate {
         delegate?.faildCache()
     }
     
+}
+
+extension HYPlayerCommonView: AVPictureInPictureControllerDelegate {
+    /**
+        @method        pictureInPictureControllerWillStartPictureInPicture:
+        @param        pictureInPictureController
+                    The Picture in Picture controller.
+        @abstract    Delegate can implement this method to be notified when Picture in Picture will start.
+     */
+    func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        print("即将开启画中画")
+    }
+
+    
+    /**
+        @method        pictureInPictureControllerDidStartPictureInPicture:
+        @param        pictureInPictureController
+                    The Picture in Picture controller.
+        @abstract    Delegate can implement this method to be notified when Picture in Picture did start.
+     */
+    func pictureInPictureControllerDidStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        print("已经开启画中画")
+    }
+
+    
+    /**
+        @method        pictureInPictureController:failedToStartPictureInPictureWithError:
+        @param        pictureInPictureController
+                    The Picture in Picture controller.
+        @param        error
+                    An error describing why it failed.
+        @abstract    Delegate can implement this method to be notified when Picture in Picture failed to start.
+     */
+    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: Error) {
+        print("开启画中画失败")
+    }
+
+    
+    /**
+        @method        pictureInPictureControllerWillStopPictureInPicture:
+        @param        pictureInPictureController
+                    The Picture in Picture controller.
+        @abstract    Delegate can implement this method to be notified when Picture in Picture will stop.
+     */
+    func pictureInPictureControllerWillStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        print("即将关闭画中画")
+    }
+
+    
+    /**
+        @method        pictureInPictureControllerDidStopPictureInPicture:
+        @param        pictureInPictureController
+                    The Picture in Picture controller.
+        @abstract    Delegate can implement this method to be notified when Picture in Picture did stop.
+     */
+    func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        print("已经关闭画中画")
+    }
+
+    
+    /**
+        @method        pictureInPictureController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:
+        @param        pictureInPictureController
+                    The Picture in Picture controller.
+        @param        completionHandler
+                    The completion handler the delegate needs to call after restore.
+        @abstract    Delegate can implement this method to restore the user interface before Picture in Picture stops.
+     */
+    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+        print("关闭画中画且恢复播放界面")
+    }
 }
