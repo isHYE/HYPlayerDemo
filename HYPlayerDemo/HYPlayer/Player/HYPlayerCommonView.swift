@@ -65,18 +65,7 @@ class HYPlayerCommonView: UIView {
     /// 播放器layer
     var playerLayer: AVPlayerLayer? {
         didSet {
-            if let playerLayer = playerLayer, AVPictureInPictureController.isPictureInPictureSupported() {
-                do {
-                    try AVAudioSession.sharedInstance().setCategory(.playback)
-                    try AVAudioSession.sharedInstance().setActive(true)
-                } catch let error {
-                    print(error)
-                }
-                
-                pipVc?.delegate = nil
-                pipVc = AVPictureInPictureController(playerLayer: playerLayer)
-                pipVc?.delegate = self
-            }
+            reloadPipVc()
         }
     }
     /// 媒体资源管理对象
@@ -347,6 +336,7 @@ extension HYPlayerCommonView {
     
     /** 全屏播放处理*/
     private func dealForFullScreenPlayer(orientationChange: Bool = false)  {
+        pipVc = nil
         
         backgroundColor = .black
         if manager?.isVerticalScreen == true {
@@ -409,6 +399,23 @@ extension HYPlayerCommonView {
         
         playerLayer?.frame = manager?.getVideoFrame() ?? CGRect(x: 0, y: 0, width: HY_SCREEN_WIDTH, height: HY_SCREEN_WIDTH / 16 * 9)
         
+        reloadPipVc()
+    }
+    
+    /** 重新加载画中画*/
+    private func reloadPipVc() {
+        if let playerLayer = playerLayer, AVPictureInPictureController.isPictureInPictureSupported() {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback)
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch let error {
+                print(error)
+            }
+
+            pipVc?.delegate = nil
+            pipVc = AVPictureInPictureController(playerLayer: playerLayer)
+            pipVc?.delegate = self
+        }
     }
 }
 
@@ -466,7 +473,7 @@ extension HYPlayerCommonView {
     
     /** app退出活跃状态*/
     @objc func applicationWillResignActive() {
-        if AVPictureInPictureController.isPictureInPictureSupported() && pipVc != nil {
+        if AVPictureInPictureController.isPictureInPictureSupported() && pipVc != nil && manager?.isVideo == true {
             pipVc?.startPictureInPicture()
         } else {
             manager?.playerStatus = .pause
