@@ -20,9 +20,9 @@ let HY_SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 
 /// 是否为X系列手机
 var HY_IS_IPHONEX: Bool {
-    let screenHeight = UIScreen.main.nativeBounds.size.height;
-    if screenHeight == 2436 || screenHeight == 1792 || screenHeight == 2688 || screenHeight == 1624 {
-        return true
+    guard #available(iOS 11.0, *) else {
+        return false
     }
-    return false
+    
+    return UIApplication.shared.windows[0].safeAreaInsets.bottom > 30
 }
