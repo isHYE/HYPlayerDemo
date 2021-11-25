@@ -226,7 +226,7 @@ extension VideoViewController {
     @objc private func showCacheList() {
         if let videoCacher = videoView?.videoCacher {
             cacheView.configView(cacheList: playerConfigArray, videoCacher: videoCacher)
-            UIApplication.shared.windows.first?.addSubview(cacheView)
+            UIApplication.shared.keyWindow?.addSubview(cacheView)
             
             dartView.isHidden = false
             UIView.animate(withDuration: 0.2, animations: {
