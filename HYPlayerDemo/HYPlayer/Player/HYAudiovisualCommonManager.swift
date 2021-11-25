@@ -149,37 +149,9 @@ class HYAudiovisualCommonManager: NSObject {
     }
     
     /** 初始化播放器*/
-    func updatePlayerItem(config: HYPlayerCommonConfig) {
-        // 设置全屏标题
-        playerView?.fullMaskView?.titleLab.text = config.title
-        
-        // 封面图处理
-        if let imgStr = config.placeHoldImgStr, imgStr != "" {
-            if let placeHoldImg = UIImage(named: imgStr) {
-                playerView?.placeHoldImgView.isHidden = false
-                playerView?.placeHoldImgView.image = placeHoldImg
-            } else if let imgUrl = URL(string: imgStr) {
-                playerView?.placeHoldImgView.isHidden = false
-                let data = try? Data(contentsOf: imgUrl)
-                if let imageData = data {
-                    let image = UIImage(data: imageData)
-                    playerView?.placeHoldImgView.image = image
-                }
-            }
-        }
-        
-        if let customEndView = config.customEndView {
-            playerView?.endPlayView?.addSubview(customEndView)
-            customEndView.snp.makeConstraints { (make) in
-                make.edges.equalToSuperview()
-            }
-        }
-        
-        if let customAudioView = config.customAudioView {
-            playerView?.audioPlayView?.addSubview(customAudioView)
-            customAudioView.snp.makeConstraints { (make) in
-                make.edges.equalToSuperview()
-            }
+    private func updatePlayerItem(config: HYPlayerCommonConfig) {
+        DispatchQueue.main.async {
+            self.initViewWithConfig(config: config)
         }
         
         // 初始化播放器
@@ -190,13 +162,6 @@ class HYAudiovisualCommonManager: NSObject {
         }
     }
     
-    /** 重播*/
-    func replayPlayerItem() {
-        playerView?.endPlayView?.isHidden = true
-        
-        playerView?.videoPlayer?.seek(to: CMTime(seconds: 0, preferredTimescale: 1))
-        playerStatus = .playing
-    }
     
     /** 播放视频*/
     private func playVideo(urlStr: String, config: HYPlayerCommonConfig) {
@@ -315,8 +280,58 @@ class HYAudiovisualCommonManager: NSObject {
                 }
             }
             
-            playVideo(item: item)
+            DispatchQueue.main.async {
+                playVideo(item: item)
+            }
         }
+    }
+    
+    /// 替换播放源时初始化基础页面
+    /// - Parameter config: 播放器配置
+    private func initViewWithConfig(config: HYPlayerCommonConfig) {
+        
+        playerView?.endPlayView?.isHidden = true
+        playerView?.audioPlayView?.isHidden = isVideo
+        
+        // 设置全屏标题
+        playerView?.fullMaskView?.titleLab.text = config.title
+        
+        // 封面图处理
+        if let imgStr = config.placeHoldImgStr, imgStr != "" {
+            if let placeHoldImg = UIImage(named: imgStr) {
+                playerView?.placeHoldImgView.isHidden = false
+                playerView?.placeHoldImgView.image = placeHoldImg
+            } else if let imgUrl = URL(string: imgStr) {
+                playerView?.placeHoldImgView.isHidden = false
+                let data = try? Data(contentsOf: imgUrl)
+                if let imageData = data {
+                    let image = UIImage(data: imageData)
+                    playerView?.placeHoldImgView.image = image
+                }
+            }
+        }
+        
+        if let customEndView = config.customEndView {
+            playerView?.endPlayView?.addSubview(customEndView)
+            customEndView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+        }
+        
+        if let customAudioView = config.customAudioView {
+            playerView?.audioPlayView?.addSubview(customAudioView)
+            customAudioView.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+        }
+    }
+    
+    /** 重播*/
+    func replayPlayerItem() {
+        playerView?.endPlayView?.isHidden = true
+        
+        playerView?.videoPlayer?.seek(to: CMTime(seconds: 0, preferredTimescale: 1))
+        playerStatus = .playing
     }
     
     /** 判断是否为网络资源*/

@@ -247,16 +247,17 @@ extension HYPlayerCommonView {
     /// - Parameter commonConfig: 播放配置
     func updateCurrentPlayer(playerConfig: HYPlayerCommonConfig) {
         
-        if let oldConfig = manager?.playerConfig {
-            if oldConfig.audioUrl != playerConfig.audioUrl || oldConfig.videoUrl != playerConfig.videoUrl {
-                manager?.playerConfig = playerConfig
+        DispatchQueue.global().async {
+            if let oldConfig = self.manager?.playerConfig {
+                if oldConfig.audioUrl != playerConfig.audioUrl || oldConfig.videoUrl != playerConfig.videoUrl {
+                    self.manager?.playerConfig = playerConfig
+                }
+            } else {
+                self.manager?.playerConfig = playerConfig
             }
-        } else {
-            manager?.playerConfig = playerConfig
         }
         
-        endPlayView?.isHidden = true
-        audioPlayView?.isHidden = manager?.isVideo == true
+        
     }
     
     /** 暂停播放器*/
