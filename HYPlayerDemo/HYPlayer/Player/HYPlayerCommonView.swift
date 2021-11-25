@@ -257,7 +257,6 @@ extension HYPlayerCommonView {
             }
         }
         
-        
     }
     
     /** 暂停播放器*/
@@ -366,7 +365,7 @@ extension HYPlayerCommonView {
         }
         
         removeFromSuperview()
-        UIApplication.shared.windows.first?.addSubview(self)
+        UIApplication.shared.keyWindow?.addSubview(self)
         snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
