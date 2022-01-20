@@ -16,7 +16,7 @@ class HYPlayerCommonView: UIView {
     /// 播放器回调
     weak var delegate: HYPlayerCommonViewDelegate?
     /// 播放器的父view
-    weak var fatherView: UIView?
+    var fatherView: UIView?
     
     /// 是否正在播放
     var isPlaying: Bool = false
@@ -667,6 +667,7 @@ extension HYPlayerCommonView: HYMediaCacherDelegate {
     /** 缓存进度更新*/
     func cacher<LocationType>(_ cacher: HYMediaCacher<LocationType>, cacheProgress progress: Float, of cache: HYMediaCacheManager) where LocationType : HYMediaCacheLocation {
         delegate?.inCaching(progress: progress)
+        print("缓存进度：\(progress)")
         controlPanel.cacheView.frame = CGRect(x: 48, y: 20, width: (HY_SCREEN_WIDTH - 176) * CGFloat(progress), height: 1)
     }
     

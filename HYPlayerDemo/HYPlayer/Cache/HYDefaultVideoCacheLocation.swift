@@ -43,15 +43,35 @@ struct HYDefaultVideoCacheLocation: HYMediaCacheLocation {
         
         func playURL(originalURL: URL, identifier: String) -> URL {
             
+            let pathExtension: String = originalURL.pathExtension
+            
+//            switch originalURL.pathExtension {
+//            case "mp3", "caf":
+//                pathExtension = "caf"
+//
+//            default:
+//                pathExtension = originalURL.pathExtension
+//            }
+            
             let fileName = (identifier + "_decrypted").HYmd5
-            let filePath = videoDirectory + "/" + fileName + "." + originalURL.pathExtension
+            let filePath = videoDirectory + "/" + fileName + "." + pathExtension
             return URL(fileURLWithPath: filePath)
         }
         
         func storageURL(originalURL: URL, identifier: String) -> URL {
             
+            let pathExtension: String = originalURL.pathExtension
+            
+//            switch originalURL.pathExtension {
+//            case "mp3", "caf":
+//                pathExtension = "caf"
+//
+//            default:
+//                pathExtension = originalURL.pathExtension
+//            }
+            
             let fileName = identifier
-            let filePath = videoDirectory + "/" + fileName + "." + originalURL.pathExtension
+            let filePath = videoDirectory + "/" + fileName + "." + pathExtension
             return URL(fileURLWithPath: filePath)
         }
         

@@ -36,8 +36,8 @@ class VideoViewController: UIViewController {
             HYPlayerCommonConfig(title: "本地视频测试",
                                  videoUrl: Bundle.main.path(forResource: "testMovie", ofType: "mp4"),
                                  placeHoldImg: "radio_bg_video"),
-            HYPlayerCommonConfig(title: "音频测试",
-                                 audioUrl: "http://music.163.com/song/media/outer/url?id=447925558.mp3",
+            HYPlayerCommonConfig(title: "网络音频测试",
+                                 audioUrl: "http://downsc.chinaz.net/Files/DownLoad/sound1/201906/11582.mp3",
                                  needCache: true,
                                  placeHoldImg: "radio_bg_video")]
     
