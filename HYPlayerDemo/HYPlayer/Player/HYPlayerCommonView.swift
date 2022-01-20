@@ -307,11 +307,6 @@ extension HYPlayerCommonView {
         manager?.hideTimer?.invalidate()
         // 关闭屏幕常亮
         UIApplication.shared.isIdleTimerDisabled = false
-        
-        if let item = playerItem {
-            item.removeObserver(self, forKeyPath: "status", context: nil)
-        }
-        NotificationCenter.default.removeObserver(self)
     }
 }
 
