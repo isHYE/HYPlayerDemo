@@ -16,7 +16,7 @@ class HYPlayerCommonView: UIView {
     /// 播放器回调
     weak var delegate: HYPlayerCommonViewDelegate?
     /// 播放器的父view
-    var fatherView: UIView?
+    weak var fatherView: UIView?
     
     /// 是否正在播放
     var isPlaying: Bool = false
@@ -111,6 +111,13 @@ class HYPlayerCommonView: UIView {
     //MARK: 视图创建
     /** 创建基础试图*/
     private func createBaseView() {
+        
+        let subView = UIView()
+        subView.backgroundColor = .black
+        fatherView?.addSubview(subView)
+        subView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         
         fatherView?.addSubview(self)
         snp.makeConstraints { (make) in
